@@ -1,0 +1,10 @@
+Bundle-Name: Shared Resources Management Web
+Bundle-SymbolicName: com.rivetlogic.assetmanagement.web
+Bundle-Version: 1.0.0
+-jsp: *.jsp,*.jspf
+-plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
+-plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
+-sources: true
+Web-ContextPath: /shared-resources-management-web
+-dsannotations-options: inherit
+Export-Package: com.rivetlogic.assetmanagement.portlet

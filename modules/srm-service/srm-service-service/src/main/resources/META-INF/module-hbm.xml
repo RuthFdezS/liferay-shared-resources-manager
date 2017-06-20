@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.rivetlogic.assetmanagement.model.Asset" />
+	<import class="com.rivetlogic.assetmanagement.model.AssetCategory" />
+	<import class="com.rivetlogic.assetmanagement.model.AssetLocation" />
+	<import class="com.rivetlogic.assetmanagement.model.AssetMessage" />
+	<import class="com.rivetlogic.assetmanagement.model.AssetRequest" />
+	<class name="com.rivetlogic.assetmanagement.model.impl.AssetImpl" table="rivetlogic_Asset">
+		<id name="assetId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="location" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property column="active_" name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="category" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mimeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<one-to-one access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" cascade="save-update" class="com.rivetlogic.assetmanagement.model.AssetPhotoBlobModel" constrained="true" name="photoBlobModel" outer-join="false" />
+		<property name="currentUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class lazy="true" name="com.rivetlogic.assetmanagement.model.AssetPhotoBlobModel" table="rivetlogic_Asset">
+		<id column="assetId" name="assetId">
+			<generator class="foreign">
+				<param name="property">com.rivetlogic.assetmanagement.model.impl.AssetImpl</param>
+			</generator>
+		</id>
+		<property column="photo" name="photoBlob" type="blob" />
+	</class>
+	<class name="com.rivetlogic.assetmanagement.model.impl.AssetCategoryImpl" table="rivetlogic_AssetCategory">
+		<id name="assetCategoryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.rivetlogic.assetmanagement.model.impl.AssetLocationImpl" table="rivetlogic_AssetLocation">
+		<id name="assetLocationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.rivetlogic.assetmanagement.model.impl.AssetMessageImpl" table="rivetlogic_AssetMessage">
+		<id name="assetMessageId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="assetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fromUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="toUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="message" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.rivetlogic.assetmanagement.model.impl.AssetRequestImpl" table="rivetlogic_AssetRequest">
+		<id name="assetRequestId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property column="uuid_" name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="assetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="requestedDate" type="org.hibernate.type.TimestampType" />
+		<property name="assingedDate" type="org.hibernate.type.TimestampType" />
+		<property name="bookedDate" type="org.hibernate.type.TimestampType" />
+		<property name="returnedDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

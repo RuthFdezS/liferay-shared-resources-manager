@@ -1,0 +1,6 @@
+Bundle-Name: Shared Resources Management Configuration
+Bundle-SymbolicName: com.rivetlogic.assetmanagement.configuration
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.rivetlogic.assetmanagement.configuration
+-metatype: *
