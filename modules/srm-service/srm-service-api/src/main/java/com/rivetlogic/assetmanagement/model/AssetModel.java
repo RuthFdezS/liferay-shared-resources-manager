@@ -261,14 +261,21 @@ public interface AssetModel extends BaseModel<Asset>, GroupedModel, ShardedModel
 	 *
 	 * @return the active of this asset
 	 */
-	public Boolean getActive();
+	public boolean getActive();
 
 	/**
-	 * Sets the active of this asset.
+	 * Returns <code>true</code> if this asset is active.
+	 *
+	 * @return <code>true</code> if this asset is active; <code>false</code> otherwise
+	 */
+	public boolean isActive();
+
+	/**
+	 * Sets whether this asset is active.
 	 *
 	 * @param active the active of this asset
 	 */
-	public void setActive(Boolean active);
+	public void setActive(boolean active);
 
 	/**
 	 * Returns the category of this asset.

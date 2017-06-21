@@ -81,7 +81,7 @@ extends AssetLocationLocalServiceBaseImpl {
 
 		List<AssetLocation> locations = null;
 
-		DynamicQuery dynamicQuery = AssetLocationLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 		disjunction.add(PropertyFactoryUtil.forName("groupId").eq(groupId));
@@ -97,7 +97,7 @@ extends AssetLocationLocalServiceBaseImpl {
 
 		try {
 
-			locations = AssetLocationLocalServiceUtil.dynamicQuery(dynamicQuery);
+			locations = dynamicQuery(dynamicQuery);
 
 		} catch (SystemException e) {
 			_log.error(e.getMessage());

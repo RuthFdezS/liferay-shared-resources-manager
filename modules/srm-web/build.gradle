@@ -8,6 +8,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype", version: "2.0.0"
 	
 	compile group: "org.osgi", name:"org.osgi.service.component.annotations", version:"1.3.0"
+	compileInclude group: 'commons-io', name: 'commons-io', version: '2.5'
 	
 	compileOnly project(":modules:srm-service:srm-service-api")
 	compileOnly project(":modules:srm-configuration")

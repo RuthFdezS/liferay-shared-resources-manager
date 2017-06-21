@@ -117,13 +117,13 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.service.util.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.entity.cache.enabled.com.rivetlogic.assetmanagement.model.Asset"),
 			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.service.util.ServiceProps.get(
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.rivetlogic.assetmanagement.model.Asset"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(srm.service.service.util.ServiceProps.get(
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.rivetlogic.assetmanagement.model.Asset"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
@@ -131,7 +131,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	public static final long USERID_COLUMN_BITMASK = 4L;
 	public static final long UUID_COLUMN_BITMASK = 8L;
 	public static final long ASSETID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(srm.service.service.util.ServiceProps.get(
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"lock.expiration.time.com.rivetlogic.assetmanagement.model.Asset"));
 
 	public AssetModelImpl() {
@@ -499,12 +499,17 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	@Override
-	public Boolean getActive() {
+	public boolean getActive() {
 		return _active;
 	}
 
 	@Override
-	public void setActive(Boolean active) {
+	public boolean isActive() {
+		return _active;
+	}
+
+	@Override
+	public void setActive(boolean active) {
 		_active = active;
 	}
 
@@ -960,7 +965,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	private String _name;
 	private String _description;
 	private long _location;
-	private Boolean _active;
+	private boolean _active;
 	private long _category;
 	private String _status;
 	private String _mimeType;

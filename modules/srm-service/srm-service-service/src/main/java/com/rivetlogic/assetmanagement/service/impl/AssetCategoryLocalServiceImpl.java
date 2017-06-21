@@ -81,7 +81,7 @@ extends AssetCategoryLocalServiceBaseImpl {
 
 		List<AssetCategory> categories = null;
 
-		DynamicQuery dynamicQuery = AssetCategoryLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 		disjunction.add(PropertyFactoryUtil.forName("groupId").eq(groupId));
@@ -97,7 +97,7 @@ extends AssetCategoryLocalServiceBaseImpl {
 
 		try {
 
-			categories = AssetCategoryLocalServiceUtil.dynamicQuery(dynamicQuery);
+			categories = dynamicQuery(dynamicQuery);
 
 		} catch (SystemException e) {
 			_log.error(e.getMessage());

@@ -3504,7 +3504,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		assetImpl.setName(asset.getName());
 		assetImpl.setDescription(asset.getDescription());
 		assetImpl.setLocation(asset.getLocation());
-		assetImpl.setActive(asset.getActive());
+		assetImpl.setActive(asset.isActive());
 		assetImpl.setCategory(asset.getCategory());
 		assetImpl.setStatus(asset.getStatus());
 		assetImpl.setMimeType(asset.getMimeType());

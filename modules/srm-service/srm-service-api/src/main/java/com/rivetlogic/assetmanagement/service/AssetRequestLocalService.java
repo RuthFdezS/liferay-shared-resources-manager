@@ -14,10 +14,10 @@
 
 package com.rivetlogic.assetmanagement.service;
 
-import java.io.Serializable;
-import java.util.List;
+import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
+
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
@@ -36,9 +36,12 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
+
 import com.rivetlogic.assetmanagement.model.AssetRequest;
 
-import aQute.bnd.annotation.ProviderType;
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for AssetRequest. Methods of this

@@ -1,4 +1,4 @@
-package com.rivetlogic.assetmanagement.portlet;
+package com.rivetlogic.assetmanagement.admin.portlet;
 
 import com.liferay.portal.kernel.util.Validator;
 import com.rivetlogic.assetmanagement.model.Asset;

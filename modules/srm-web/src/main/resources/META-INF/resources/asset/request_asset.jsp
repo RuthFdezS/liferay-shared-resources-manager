@@ -1,6 +1,3 @@
-<%@page
-	import="com.rivetlogic.assetmanagement.notifications.NotificationType"%>
-<%@page import="com.liferay.portal.kernel.service.UserLocalServiceUtil"%>
 <%@include file="/init.jsp"%>
 
 <%
@@ -26,7 +23,7 @@
 
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setParameter("tabs1", tab);
-	portletURL.setParameter("mvcPath", "/html/asset/request_asset.jsp");
+	portletURL.setParameter("mvcPath", "/asset/request_asset.jsp");
 	portletURL.setParameter("assetId", String.valueOf(assetId));
 	portletURL.setParameter("redirect", redirect);
 
@@ -56,10 +53,10 @@
 </portlet:actionURL>
 
 <portlet:renderURL var="messageAssetURL">
-	<portlet:param name="mvcPath" value="/html/asset/message_asset.jsp" />
+	<portlet:param name="mvcPath" value="/asset/message_asset.jsp" />
 	<portlet:param name="assetId" value="<%=String.valueOf(assetId)%>" />
 	<portlet:param name="messageType"
-		value="<%=NotificationType.MESSAGE_SEND%>" />
+		value="<%=AssetNotificationsKeys.NotificationType.MESSAGE_SEND%>" />
 	<portlet:param name="toUserId"
 		value="<%=String.valueOf(asset.getCurrentUserId())%>" />
 	<portlet:param name="redirect" value="<%=currentURL%>" />
@@ -95,7 +92,7 @@
 
 		<liferay-ui:message key="status" />:
 		<span
-			style="color: <%=AssetStatus.valueOf(asset.getStatus()).getColor()%>"><%=LanguageUtil.get(pageContext, AssetStatus.valueOf(asset.getStatus()).getName())%></span>
+			style="color: <%=AssetStatus.valueOf(asset.getStatus()).getColor()%>"><%=LanguageUtil.get(request, AssetStatus.valueOf(asset.getStatus()).getName())%></span>
 
 		<c:if
 			test="<%=asset.getStatus().equals(AssetStatus.BOOKED.toString())%>">
@@ -166,8 +163,7 @@
 
 	<liferay-ui:search-container-results
 		results="<%=AssetRequestLocalServiceUtil.getRequestsByAsset(assetId, searchContainer.getStart(), searchContainer.getEnd(), orderByCol,
-						orderByType)%>"
-		total="<%=AssetRequestLocalServiceUtil.getRequestsCountByAsset(assetId)%>" />
+						orderByType)%>" />
 
 	<liferay-ui:search-container-row
 		className="com.rivetlogic.assetmanagement.model.AssetRequest"
@@ -179,7 +175,7 @@
 		<liferay-ui:search-container-column-date property="returnedDate" />
 		<liferay-ui:search-container-column-text name="user-name"
 			value="<%=PortalUtil.getUserName(assetRequest.getUserId(),\"\")%>" />
-		<liferay-ui:search-container-column-text name="status" value="<%=LanguageUtil.get(pageContext, assetRequest.getStatus().toLowerCase())%>" />
+		<liferay-ui:search-container-column-text name="status" value="<%=LanguageUtil.get(request, assetRequest.getStatus().toLowerCase())%>" />
 
 	</liferay-ui:search-container-row>
 
@@ -192,8 +188,7 @@
 	iteratorURL="<%=portletURL%>" emptyResultsMessage="no-asset-messages">
 
 	<liferay-ui:search-container-results
-		results="<%=AssetMessageLocalServiceUtil.getAssetMessages(assetId, themeDisplay.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS)%>"
-		total="<%=AssetMessageLocalServiceUtil.getAssetMessagesCount(assetId, themeDisplay.getUserId())%>" />
+		results="<%=AssetMessageLocalServiceUtil.getAssetMessages(assetId, themeDisplay.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS)%>" />
 
 	<liferay-ui:search-container-row
 		className="com.rivetlogic.assetmanagement.model.AssetMessage"
@@ -229,9 +224,9 @@
 							<aui:col>
 								<portlet:renderURL var="replyAssetURL">
 									<portlet:param name="mvcPath"
-										value="/html/asset/message_asset.jsp" />
+										value="/asset/message_asset.jsp" />
 									<portlet:param name="messageType"
-										value="<%=NotificationType.MESSAGE_REPLY%>" />
+										value="<%=AssetNotificationsKeys.NotificationType.MESSAGE_REPLY%>" />
 									<portlet:param name="assetId"
 										value="<%=String.valueOf(assetId)%>" />
 									<portlet:param name="toUserId"

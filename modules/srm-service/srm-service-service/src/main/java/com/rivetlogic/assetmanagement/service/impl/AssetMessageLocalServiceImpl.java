@@ -20,7 +20,6 @@ import java.util.List;
 
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
@@ -37,6 +36,7 @@ import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetMessage;
 import com.rivetlogic.assetmanagement.service.AssetLocalServiceUtil;
+import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.base.AssetMessageLocalServiceBaseImpl;
 
 import aQute.bnd.annotation.ProviderType;
@@ -95,7 +95,7 @@ extends AssetMessageLocalServiceBaseImpl {
 
 		List<AssetMessage> myList = new ArrayList<AssetMessage>();
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetMessage.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -111,7 +111,7 @@ extends AssetMessageLocalServiceBaseImpl {
 		dynamicQuery.addOrder(OrderFactoryUtil.desc("createDate"));
 
 		try {
-			myList = assetMessagePersistence.findWithDynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -122,7 +122,7 @@ extends AssetMessageLocalServiceBaseImpl {
 
 		int count = 0;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetMessage.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -134,7 +134,7 @@ extends AssetMessageLocalServiceBaseImpl {
 		dynamicQuery.add(disjunction);
 
 		try {
-			count = (int) assetMessagePersistence.countWithDynamicQuery(dynamicQuery);
+			count = (int) dynamicQueryCount(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}

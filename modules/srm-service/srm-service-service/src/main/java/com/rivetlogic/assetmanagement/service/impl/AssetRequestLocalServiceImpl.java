@@ -164,9 +164,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		Asset asset = AssetLocalServiceUtil.getAsset(assetId);
 
-		AssetRequest assetRequest = AssetRequestLocalServiceUtil.getUserAssetRequests(assetId, themeDisplay.getUserId(), "ASSIGNED");
-
-		AssetRequestLocalServiceUtil.deleteAssetRequest(themeDisplay, serviceContext, assetRequest.getAssetRequestId());
+		AssetRequest assetRequest = AssetRequestLocalServiceUtil.getUserAssetRequests(assetId, themeDisplay.AssetRequestLocalServiceUtil.deleteAssetRequest(themeDisplay, serviceContext, assetRequest.getAssetRequestId());
 
 		asset.setStatus(AssetStatus.AVAILABLE.toString());
 		asset.setCurrentUserId(0L);
@@ -228,11 +226,11 @@ extends AssetRequestLocalServiceBaseImpl {
 	@SuppressWarnings("unchecked")
 	public void deleteAssetRequestByAssetId(long assetId) throws SystemException, PortalException {
 		// TODO: Check for erros, status and asset assigned user
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
-		List<AssetRequest> assetRequests = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+		List<AssetRequest> assetRequests = dynamicQuery(dynamicQuery);
 
 		for (AssetRequest assetRequest : assetRequests) {
 			assetRequestLocalService.deleteAssetRequest(assetRequest.getAssetRequestId());
@@ -244,7 +242,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		AssetRequest assetRequest = null;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -255,7 +253,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		dynamicQuery.addOrder(OrderFactoryUtil.asc("requestedDate"));
 
 		try {
-			List<AssetRequest> assetRequests = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			List<AssetRequest> assetRequests = dynamicQuery(dynamicQuery);
 			assetRequest = assetRequests.get(0);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
@@ -271,7 +269,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		AssetRequest assetRequest = null;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -280,7 +278,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		dynamicQuery.addOrder(OrderFactoryUtil.asc("requestedDate"));
 
 		try {
-			List<AssetRequest> assetRequests = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			List<AssetRequest> assetRequests = dynamicQuery(dynamicQuery);
 			assetRequest = assetRequests.get(0);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
@@ -296,7 +294,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		boolean hasAssetRequests = false;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -305,7 +303,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		dynamicQuery.add(PropertyFactoryUtil.forName("status").eq(status));
 
 		try {
-			List<AssetRequest> assetRequests = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			List<AssetRequest> assetRequests = dynamicQuery(dynamicQuery);
 			if (assetRequests.size() > 0) {
 				hasAssetRequests = true;
 			}
@@ -321,7 +319,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		AssetRequest assetRequest = null;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -330,7 +328,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		dynamicQuery.add(PropertyFactoryUtil.forName("status").eq(status));
 
 		try {
-			List<AssetRequest> assetRequests = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			List<AssetRequest> assetRequests = dynamicQuery(dynamicQuery);
 			assetRequest = assetRequests.get(0);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
@@ -344,7 +342,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		List<AssetRequest> myList = new ArrayList<AssetRequest>();
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
@@ -353,7 +351,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		dynamicQuery.addOrder(OrderFactoryUtil.desc("modifiedDate"));
 
 		try {
-			myList = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -364,12 +362,12 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		int myList = 0;
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("assetId").eq(assetId));
 
 		try {
-			myList = (int) assetPersistence.countWithDynamicQuery(dynamicQuery);
+			myList = (int) dynamicQueryCount(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -465,12 +463,12 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		List<AssetRequest> myList = new ArrayList<AssetRequest>();
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(AssetRequest.class);
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("status").eq("ASSIGNED"));
 
 		try {
-			myList = assetRequestPersistence.findWithDynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}

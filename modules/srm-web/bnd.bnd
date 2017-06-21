@@ -7,4 +7,6 @@ Bundle-Version: 1.0.0
 -sources: true
 Web-ContextPath: /shared-resources-management-web
 -dsannotations-options: inherit
-Export-Package: com.rivetlogic.assetmanagement.portlet
+Export-Package: \
+	com.rivetlogic.assetmanagement.portlet,\
+	com.rivetlogic.assetmanagement.admin.portlet

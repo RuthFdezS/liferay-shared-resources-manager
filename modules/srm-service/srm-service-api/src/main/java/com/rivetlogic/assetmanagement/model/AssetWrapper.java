@@ -197,6 +197,26 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		return new AssetWrapper(_asset.toUnescapedModel());
 	}
 
+	/**
+	* Returns the active of this asset.
+	*
+	* @return the active of this asset
+	*/
+	@Override
+	public boolean getActive() {
+		return _asset.getActive();
+	}
+
+	/**
+	* Returns <code>true</code> if this asset is active.
+	*
+	* @return <code>true</code> if this asset is active; <code>false</code> otherwise
+	*/
+	@Override
+	public boolean isActive() {
+		return _asset.isActive();
+	}
+
 	@Override
 	public boolean isCachedModel() {
 		return _asset.isCachedModel();
@@ -235,16 +255,6 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _asset.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the active of this asset.
-	*
-	* @return the active of this asset
-	*/
-	@Override
-	public java.lang.Boolean getActive() {
-		return _asset.getActive();
 	}
 
 	/**
@@ -448,12 +458,12 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	}
 
 	/**
-	* Sets the active of this asset.
+	* Sets whether this asset is active.
 	*
 	* @param active the active of this asset
 	*/
 	@Override
-	public void setActive(java.lang.Boolean active) {
+	public void setActive(boolean active) {
 		_asset.setActive(active);
 	}
 

@@ -1,6 +1,7 @@
 package com.rivetlogic.assetmanagement.portlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -42,9 +44,7 @@ import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 	property = {
 		"javax.portlet.name="+AssetNotificationsKeys.PORTLET_ID,
 		"com.liferay.portlet.icon=/icon.png",
-		"com.liferay.portlet.display-category=category.sample",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.display-name=srm-portlet Portlet",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/asset/view.jsp",
 		"javax.portlet.init-param.config-template=/asset/configuration.jsp",
@@ -170,20 +170,10 @@ public class AssetPortlet extends MVCPortlet {
 						o.close();
 					} else {
 						// return default image
-						
-						String realPath = getPortletContext().getRealPath("/");
-
-						String url = realPath + "images/no-preview-available.jpg";
-						
-						Path path = Paths.get(url);
-						byte[] data = Files.readAllBytes(path);
-						
-						resourceResponse.setContentType("image/jpeg");
-						
+						InputStream is = getPortletContext().getResourceAsStream("/images/no-preview-available.jpg");
 						OutputStream o = resourceResponse.getPortletOutputStream();
-						
-						o.write(data);
-						
+						IOUtils.copy(is, o);
+
 						o.flush();
 						o.close();
 					}

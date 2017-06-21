@@ -1,9 +1,10 @@
 Bundle-Name: Shared Resources Management API
 Bundle-SymbolicName: com.rivetlogic.assetmanagement.api
 Bundle-Version: 1.0.0
-Export-Package:\
+Export-Package: \
 	com.rivetlogic.assetmanagement.exception,\
 	com.rivetlogic.assetmanagement.model,\
 	com.rivetlogic.assetmanagement.service,\
-	com.rivetlogic.assetmanagement.service.persistence
+	com.rivetlogic.assetmanagement.service.persistence,\
+	com.rivetlogic.assetmanagement.keys
 -includeresource: META-INF/service.xml=../srm-service-service/service.xml

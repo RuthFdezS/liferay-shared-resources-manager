@@ -192,11 +192,15 @@ public class AssetSoap implements Serializable {
 		_location = location;
 	}
 
-	public Boolean getActive() {
+	public boolean getActive() {
 		return _active;
 	}
 
-	public void setActive(Boolean active) {
+	public boolean isActive() {
+		return _active;
+	}
+
+	public void setActive(boolean active) {
 		_active = active;
 	}
 
@@ -251,7 +255,7 @@ public class AssetSoap implements Serializable {
 	private String _name;
 	private String _description;
 	private long _location;
-	private Boolean _active;
+	private boolean _active;
 	private long _category;
 	private String _status;
 	private String _mimeType;

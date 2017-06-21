@@ -102,7 +102,7 @@
 
 					<portlet:renderURL var="editAssetURL">
 						<portlet:param name="mvcPath"
-							value="/html/asset/request_asset.jsp" />
+							value="/asset/request_asset.jsp" />
 						<portlet:param name="assetId"
 							value="<%=String.valueOf(asset.getAssetId())%>" />
 						<portlet:param name="redirect" value="<%=redirect%>" />
@@ -169,7 +169,7 @@
 
 					<portlet:renderURL var="editAssetURL">
 						<portlet:param name="mvcPath"
-							value="/html/asset/request_asset.jsp" />
+							value="/asset/request_asset.jsp" />
 						<portlet:param name="assetId"
 							value="<%=String.valueOf(asset.getAssetId())%>" />
 						<portlet:param name="redirect" value="<%=redirect%>" />

@@ -106,7 +106,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		// TODO: Add global scope items
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 
@@ -129,7 +129,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		}
 
 		try {
-			myList = AssetLocalServiceUtil.dynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -142,7 +142,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		// TODO: Add global scope items
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 
@@ -157,7 +157,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		dynamicQuery.add(PropertyFactoryUtil.forName("status").eq(status));
 
 		try {
-			count = (int) AssetLocalServiceUtil.dynamicQueryCount(dynamicQuery);
+			count = (int) dynamicQueryCount(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -172,7 +172,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		// TODO: Add global scope items
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 
@@ -214,7 +214,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		}
 
 		try {
-			myList = AssetLocalServiceUtil.dynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -227,7 +227,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		// TODO: Add global scope items
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 
@@ -262,7 +262,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		dynamicQuery.add(PropertyFactoryUtil.forName("active").eq(true));
 
 		try {
-			count = (int) AssetLocalServiceUtil.dynamicQueryCount(dynamicQuery);
+			count = (int) dynamicQueryCount(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -274,7 +274,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		List<Asset> myList = new ArrayList<Asset>();
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 		dynamicQuery.add(PropertyFactoryUtil.forName("groupId").eq(groupId));
@@ -309,7 +309,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		}
 
 		try {
-			myList = AssetLocalServiceUtil.dynamicQuery(dynamicQuery);
+			myList = dynamicQuery(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
@@ -320,7 +320,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 
 		int count = 0;
 
-		DynamicQuery dynamicQuery = AssetLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("companyId").eq(companyId));
 		dynamicQuery.add(PropertyFactoryUtil.forName("groupId").eq(groupId));
@@ -347,7 +347,7 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		}
 
 		try {
-			count = (int) AssetLocalServiceUtil.dynamicQueryCount(dynamicQuery);
+			count = (int) dynamicQueryCount(dynamicQuery);
 		} catch (SystemException e) {
 			_log.error(e.getMessage());
 		}
