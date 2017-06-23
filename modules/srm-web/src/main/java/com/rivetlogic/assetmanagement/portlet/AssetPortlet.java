@@ -3,9 +3,6 @@ package com.rivetlogic.assetmanagement.portlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Blob;
 
 import javax.portlet.ActionRequest;
@@ -28,7 +25,7 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetMessage;
 import com.rivetlogic.assetmanagement.model.AssetRequest;
@@ -42,7 +39,7 @@ import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 @Component(
 	immediate = true,
 	property = {
-		"javax.portlet.name="+AssetNotificationsKeys.PORTLET_ID,
+		"javax.portlet.name="+AssetKeys.PORTLET_ID,
 		"com.liferay.portlet.icon=/icon.png",
 		"com.liferay.portlet.instanceable=false",
 		"javax.portlet.init-param.template-path=/",

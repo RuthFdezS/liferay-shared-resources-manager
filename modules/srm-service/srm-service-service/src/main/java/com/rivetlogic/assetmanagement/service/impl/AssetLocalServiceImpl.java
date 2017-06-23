@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetStatus;
-import com.rivetlogic.assetmanagement.service.AssetLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.base.AssetLocalServiceBaseImpl;
 
 import aQute.bnd.annotation.ProviderType;

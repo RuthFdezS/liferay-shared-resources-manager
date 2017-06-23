@@ -1,6 +1,6 @@
 package com.rivetlogic.assetmanagement.notifications;
 
-import static com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys.PORTLET_ID;
+import static com.rivetlogic.assetmanagement.keys.AssetKeys.PORTLET_ID;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
@@ -29,17 +29,17 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys.NotificationType;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
+import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
 
 @Component(
 	immediate = true,
-	property = {"javax.portlet.name=" + AssetNotificationsKeys.PORTLET_ID},
+	property = {"javax.portlet.name=" + AssetKeys.PORTLET_ID},
 	service = UserNotificationHandler.class
 )
 public class AssetNotificationsHandler extends BaseUserNotificationHandler {
 	public AssetNotificationsHandler() {
-		setPortletId(AssetNotificationsKeys.PORTLET_ID);
+		setPortletId(AssetKeys.PORTLET_ID);
 	}
 
 	@Override
@@ -53,18 +53,18 @@ public class AssetNotificationsHandler extends BaseUserNotificationHandler {
 	private String getNotificationBodyTemplate(JSONObject jsonObject, ServiceContext serviceContext) throws SystemException, PortalException {
 		String template = "Asset Notification";
 
-		String notificationType = jsonObject.getString("notificationType");
+		AssetNotificationType notificationType = AssetNotificationType.valueOf(jsonObject.getString("notificationType"));
 
 		switch (notificationType) {
-		case NotificationType.ASSIGNED:
+		case ASSIGNED:
 			template = getPreBookTemplate(jsonObject, serviceContext);
 			break;
 
-		case NotificationType.MESSAGE_SEND:
+		case MESSAGE_SEND:
 			template = getMessageSendTemplate(jsonObject, serviceContext);
 			break;
 
-		case NotificationType.MESSAGE_REPLY:
+		case MESSAGE_REPLY:
 			template = getMessageReplyTemplate(jsonObject, serviceContext);
 			break;
 

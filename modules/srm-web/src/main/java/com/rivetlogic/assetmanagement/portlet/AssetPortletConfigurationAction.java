@@ -16,16 +16,16 @@ import org.osgi.service.component.annotations.Modified;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
-import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.rivetlogic.assetmanagement.configuration.AssetManagementPortletInstanceConfiguration;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
 
 @Component(
     configurationPid = "com.rivetlogic.assetmanagement.configuration.AssetManagementPortletInstanceConfiguration",
     configurationPolicy = ConfigurationPolicy.OPTIONAL,
     immediate = true,
     property = {
-        "javax.portlet.name="+AssetNotificationsKeys.PORTLET_ID
+        "javax.portlet.name="+AssetKeys.PORTLET_ID
     },
     service = ConfigurationAction.class
 )
@@ -36,7 +36,7 @@ public class AssetPortletConfigurationAction extends DefaultConfigurationAction 
             ActionResponse actionResponse)
         throws Exception {
 
-        String defaultOpenedTab = ParamUtil.getString(actionRequest, "defaultOpenedTab");
+        String defaultOpenedTab = GetterUtil.getString(getParameter(actionRequest, "defaultOpenedTab"));
         setPreference(actionRequest, "defaultOpenedTab", defaultOpenedTab);
 
         super.processAction(portletConfig, actionRequest, actionResponse);

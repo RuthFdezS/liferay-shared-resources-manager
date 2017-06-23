@@ -288,5 +288,5 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 	public long category;
 	public String status;
 	public String mimeType;
-	public Long currentUserId;
+	public long currentUserId;
 }

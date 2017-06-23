@@ -32,11 +32,10 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetMessage;
 import com.rivetlogic.assetmanagement.service.AssetLocalServiceUtil;
-import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.base.AssetMessageLocalServiceBaseImpl;
 
 import aQute.bnd.annotation.ProviderType;
@@ -90,7 +89,6 @@ extends AssetMessageLocalServiceBaseImpl {
 		return assetMessageLocalService.addAssetMessage(message);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<AssetMessage> getAssetMessages(long assetId, long userId, int start, int end) {
 
 		List<AssetMessage> myList = new ArrayList<AssetMessage>();
@@ -159,7 +157,7 @@ extends AssetMessageLocalServiceBaseImpl {
 
 		notificationEventJSONObject.put("message", assetMessage.getMessage());
 
-		UserNotificationEventLocalServiceUtil.addUserNotificationEvent(assetMessage.getToUserId(), AssetNotificationsKeys.PORTLET_ID,
+		UserNotificationEventLocalServiceUtil.addUserNotificationEvent(assetMessage.getToUserId(), AssetKeys.PORTLET_ID,
 				new Date().getTime(), assetMessage.getFromUserId(), notificationEventJSONObject.toString(), false, serviceContext);
 
 	}

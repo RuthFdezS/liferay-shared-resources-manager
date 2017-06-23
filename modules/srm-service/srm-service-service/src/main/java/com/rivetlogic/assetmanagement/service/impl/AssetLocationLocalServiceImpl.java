@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.rivetlogic.assetmanagement.model.AssetLocation;
-import com.rivetlogic.assetmanagement.service.AssetLocationLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.base.AssetLocationLocalServiceBaseImpl;
 
 import aQute.bnd.annotation.ProviderType;

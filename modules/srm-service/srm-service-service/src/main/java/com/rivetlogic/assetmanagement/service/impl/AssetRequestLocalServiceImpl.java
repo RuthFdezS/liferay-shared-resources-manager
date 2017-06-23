@@ -14,7 +14,7 @@
 
 package com.rivetlogic.assetmanagement.service.impl;
 
-import static com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys.PORTLET_ID;
+import static com.rivetlogic.assetmanagement.keys.AssetKeys.PORTLET_ID;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,7 +25,6 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -40,8 +39,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.rivetlogic.assetmanagement.configuration.AssetManagementGroupServiceConfiguration;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys.NotificationType;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
+import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetRequest;
 import com.rivetlogic.assetmanagement.model.AssetStatus;
@@ -147,7 +146,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 			asset = assetPersistence.update(asset);
 
-			sendNotificiationMessage(serviceContext, asset, nextAssetRequest, themeDisplay.getUserId(), NotificationType.ASSIGNED);
+			sendNotificiationMessage(serviceContext, asset, nextAssetRequest, themeDisplay.getUserId(), AssetNotificationType.ASSIGNED);
 
 		} else {
 
@@ -164,7 +163,9 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		Asset asset = AssetLocalServiceUtil.getAsset(assetId);
 
-		AssetRequest assetRequest = AssetRequestLocalServiceUtil.getUserAssetRequests(assetId, themeDisplay.AssetRequestLocalServiceUtil.deleteAssetRequest(themeDisplay, serviceContext, assetRequest.getAssetRequestId());
+		AssetRequest assetRequest = AssetRequestLocalServiceUtil.getUserAssetRequests(assetId, themeDisplay.getUserId(), "ASSIGNED");
+
+		AssetRequestLocalServiceUtil.deleteAssetRequest(themeDisplay, serviceContext, assetRequest.getAssetRequestId());
 
 		asset.setStatus(AssetStatus.AVAILABLE.toString());
 		asset.setCurrentUserId(0L);
@@ -186,7 +187,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 			asset = assetPersistence.update(asset);
 
-			sendNotificiationMessage(serviceContext, asset, nextAssetRequest, themeDisplay.getUserId(), NotificationType.ASSIGNED);
+			sendNotificiationMessage(serviceContext, asset, nextAssetRequest, themeDisplay.getUserId(), AssetNotificationType.ASSIGNED);
 
 		} else {
 
@@ -223,7 +224,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return assetRequestLocalService.deleteAssetRequest(assetRequestId);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void deleteAssetRequestByAssetId(long assetId) throws SystemException, PortalException {
 		// TODO: Check for erros, status and asset assigned user
 		DynamicQuery dynamicQuery = dynamicQuery();
@@ -237,7 +237,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public AssetRequest getRequestAssetByAssetId(long assetId, long userId, String status) {
 
 		AssetRequest assetRequest = null;
@@ -264,7 +263,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return assetRequest;
 	}
 
-	@SuppressWarnings("unchecked")
 	public AssetRequest getRequestAssetByAssetId(long assetId, String status) {
 
 		AssetRequest assetRequest = null;
@@ -289,7 +287,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return assetRequest;
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean hasUserAssetRequests(long assetId, long userId, String status) {
 
 		boolean hasAssetRequests = false;
@@ -314,7 +311,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return hasAssetRequests;
 	}
 
-	@SuppressWarnings("unchecked")
 	public AssetRequest getUserAssetRequests(long assetId, long userId, String status) {
 
 		AssetRequest assetRequest = null;
@@ -337,7 +333,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return assetRequest;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<AssetRequest> getRequestsByAsset(long assetId, int start, int end, String orderByColumn, String orderByType) {
 
 		List<AssetRequest> myList = new ArrayList<AssetRequest>();
@@ -435,7 +430,7 @@ extends AssetRequestLocalServiceBaseImpl {
 							ServiceContext serviceContext = new ServiceContext();
 							serviceContext.setScopeGroupId(groupId);
 
-							sendNotificiationMessage(serviceContext, asset, nextAssetRequest, requestAsset.getUserId(), NotificationType.ASSIGNED);
+							sendNotificiationMessage(serviceContext, asset, nextAssetRequest, requestAsset.getUserId(), AssetNotificationType.ASSIGNED);
 
 						} else {
 							asset.setStatus(AssetStatus.AVAILABLE.toString());
@@ -458,7 +453,6 @@ extends AssetRequestLocalServiceBaseImpl {
 		return groupConfig;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<AssetRequest> getAssignedAssetsRequest() {
 
 		List<AssetRequest> myList = new ArrayList<AssetRequest>();
@@ -486,11 +480,11 @@ extends AssetRequestLocalServiceBaseImpl {
 	}
 
 	private void sendNotificiationMessage(ServiceContext serviceContext, Asset asset, AssetRequest assetRequest, long returnedUserId,
-			String notificationType) throws PortalException, SystemException {
+			AssetNotificationType notificationType) throws PortalException, SystemException {
 
 		JSONObject notificationEventJSONObject = JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put("notificationType", notificationType);
+		notificationEventJSONObject.put("notificationType", notificationType.name());
 
 		notificationEventJSONObject.put("returnedUserId", returnedUserId);
 
@@ -499,7 +493,8 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		notificationEventJSONObject.put("assetRequestId", assetRequest.getAssetRequestId());
 
-		UserNotificationEventLocalServiceUtil.addUserNotificationEvent(assetRequest.getUserId(), AssetNotificationsKeys.PORTLET_ID,
+		//TODO replace with new way
+		UserNotificationEventLocalServiceUtil.addUserNotificationEvent(assetRequest.getUserId(), AssetKeys.PORTLET_ID,
 				new Date().getTime(), returnedUserId, notificationEventJSONObject.toString(), false, serviceContext);
 
 	}

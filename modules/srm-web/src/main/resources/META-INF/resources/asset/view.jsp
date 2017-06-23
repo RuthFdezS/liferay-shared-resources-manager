@@ -1,14 +1,17 @@
 <%@include file="/init.jsp"%>
 
 <%
+	AssetManagementPortletInstanceConfiguration portletInstanceConfiguration = portletDisplay
+			.getPortletInstanceConfiguration(AssetManagementPortletInstanceConfiguration.class);
+
 	String tabs1 = ParamUtil.getString(request, "tabs1", StringPool.BLANK);
-	if(tabs1.isEmpty()){
-		tabs1 = GetterUtil.getString(portletPreferences.getValue("default-opened-tab", "my-assets"));
+	if (tabs1.isEmpty()) {
+		tabs1 = portletInstanceConfiguration.defaultOpenedTab().getTabName();
 	}
 
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setParameter("tabs1", tabs1);
-	
+
 	String redirect = PortalUtil.getCurrentURL(renderRequest);
 
 	String orderByCol = ParamUtil.getString(renderRequest, "orderByCol");
@@ -27,18 +30,18 @@
 
 	String location = ParamUtil.getString(renderRequest, "location");
 
-	List<AssetCategory> categories = AssetCategoryLocalServiceUtil.getAssetCategories(themeDisplay.getScopeGroupId(),
-			themeDisplay.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	List<AssetCategory> categories = AssetCategoryLocalServiceUtil.getAssetCategories(
+			themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	Map<Long, AssetCategory> categoriesMap = new HashMap<Long, AssetCategory>();
-	for(AssetCategory c : categories) {
-	    categoriesMap.put(c.getPrimaryKey(), c);
+	for (AssetCategory c : categories) {
+		categoriesMap.put(c.getPrimaryKey(), c);
 	}
-	
-	List<AssetLocation> locations = AssetLocationLocalServiceUtil.getAssetLocations(themeDisplay.getScopeGroupId(),
-			themeDisplay.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+	List<AssetLocation> locations = AssetLocationLocalServiceUtil.getAssetLocations(
+			themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	Map<Long, AssetLocation> locationsMap = new HashMap<Long, AssetLocation>();
-	for(AssetLocation c : locations) {
-	    locationsMap.put(c.getPrimaryKey(), c);
+	for (AssetLocation c : locations) {
+		locationsMap.put(c.getPrimaryKey(), c);
 	}
 %>
 

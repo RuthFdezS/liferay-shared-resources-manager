@@ -1,5 +1,26 @@
 package com.rivetlogic.assetmanagement.admin.portlet;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+
+import org.apache.commons.io.IOUtils;
+import org.osgi.service.component.annotations.Component;
+
 import com.liferay.portal.kernel.dao.jdbc.OutputBlob;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -17,7 +38,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys;
+import com.rivetlogic.assetmanagement.keys.AssetKeys;
 import com.rivetlogic.assetmanagement.model.Asset;
 import com.rivetlogic.assetmanagement.model.AssetCategory;
 import com.rivetlogic.assetmanagement.model.AssetLocation;
@@ -26,37 +47,13 @@ import com.rivetlogic.assetmanagement.service.AssetLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.AssetLocationLocalServiceUtil;
 import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.Portlet;
-import javax.portlet.PortletException;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
-
-import org.apache.commons.io.IOUtils;
-import org.osgi.service.component.annotations.Component;
-
 /**
  * @author emmanuelabarca
  */
 @Component(
 	immediate = true,
 	property = {
-		"javax.portlet.name="+AssetNotificationsKeys.MANAGEMENT_PORTLET_ID,
+		"javax.portlet.name="+AssetKeys.MANAGEMENT_PORTLET_ID,
 		"com.liferay.portlet.icon=/icon.png",
 		"com.liferay.portlet.control-panel-entry-category=site_administration.content",
 		"com.liferay.portlet.control-panel-entry-weight=1.0",
