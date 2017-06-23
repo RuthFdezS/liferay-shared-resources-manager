@@ -1,0 +1,4 @@
+Bundle-Name: Shared Resources Management Language
+Bundle-SymbolicName: com.rivetlogic.assetmanagement.language
+Bundle-Version: 1.0.0
+Export-Package: com.rivetlogic.assetmanagement.language
