@@ -13,10 +13,9 @@ import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
 		property = {"javax.portlet.name=" + AssetKeys.PORTLET_ID},
 		service = UserNotificationDefinition.class
 )
-public class AssetAssignedUserNotificationDefinition extends UserNotificationDefinition {
+public class AssetAssignedUserNotificationDefinition extends BaseAssetUserNotificationDefinition {
 	public AssetAssignedUserNotificationDefinition(){
-		super(AssetKeys.PORTLET_ID, 0,
-				AssetNotificationType.ASSIGNED.ordinal(),
+		super( AssetNotificationType.ASSIGNED,
 				"notifications-when-a-resource-can-be-booked-by-you");
 
 		addUserNotificationDeliveryType( new UserNotificationDeliveryType(

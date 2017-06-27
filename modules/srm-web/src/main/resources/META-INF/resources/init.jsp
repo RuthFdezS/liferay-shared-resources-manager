@@ -30,7 +30,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@page import="com.rivetlogic.assetmanagement.service.AssetCategoryLocalServiceUtil"%>
 <%@page import="com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil"%>
 <%@page import="com.rivetlogic.assetmanagement.service.AssetMessageLocalServiceUtil"%>
-<%@page import="com.rivetlogic.assetmanagement.keys.AssetNotificationsKeys"%>
+<%@page import="com.rivetlogic.assetmanagement.keys.AssetNotificationType"%>
 
 <%@page import="com.rivetlogic.assetmanagement.configuration.AssetManagementPortletInstanceConfiguration"%>
 

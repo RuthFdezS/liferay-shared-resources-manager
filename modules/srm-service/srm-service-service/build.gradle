@@ -12,4 +12,4 @@ buildService {
 	apiDir = "../srm-service-api/src/main/java"
 }
 
-group = "srm.service"
+group = "com.rivetlogic.assetmanagement"

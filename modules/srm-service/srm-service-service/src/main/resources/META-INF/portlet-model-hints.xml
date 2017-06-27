@@ -64,7 +64,7 @@
 		<field name="companyId" type="long" />
 		<field name="userName" type="String" />
 		<field name="requestedDate" type="Date" />
-		<field name="assingedDate" type="Date" />
+		<field name="assignedDate" type="Date" />
 		<field name="bookedDate" type="Date" />
 		<field name="returnedDate" type="Date" />
 		<field name="status" type="String" />

@@ -184,7 +184,7 @@
 
 		<!-- Other fields -->
 		<column name="requestedDate" type="Date" />
-		<column name="assingedDate" type="Date" />
+		<column name="assignedDate" type="Date" />
 		<column name="bookedDate" type="Date" />
 		<column name="returnedDate" type="Date" />
 		<column name="status" type="String" />

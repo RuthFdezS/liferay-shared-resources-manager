@@ -406,7 +406,7 @@ public class AssetRequestLocalServiceUtil {
 	public static void reasignAssets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().reasignAssets();
+		getService().reassignAssets();
 	}
 
 	public static AssetRequestLocalService getService() {

@@ -15,6 +15,7 @@
 package com.rivetlogic.assetmanagement.service.impl;
 
 import static com.rivetlogic.assetmanagement.keys.AssetKeys.PORTLET_ID;
+import static com.rivetlogic.assetmanagement.keys.AssetKeys.MANAGEMENT_PORTLET_ID;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,9 +36,11 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
+import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.rivetlogic.assetmanagement.configuration.AssetManagementGroupServiceConfiguration;
 import com.rivetlogic.assetmanagement.keys.AssetKeys;
 import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
@@ -66,8 +69,7 @@ import aQute.bnd.annotation.ProviderType;
  */
 @Component
 @ProviderType
-public class AssetRequestLocalServiceImpl
-extends AssetRequestLocalServiceBaseImpl {
+public class AssetRequestLocalServiceImpl extends AssetRequestLocalServiceBaseImpl {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -98,7 +100,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 		if (asset.getStatus().equals(AssetStatus.AVAILABLE.toString())) {
 			_assetRequest.setStatus("BOOKED");
-			_assetRequest.setAssingedDate(now);
+			_assetRequest.setAssignedDate(now);
 			_assetRequest.setBookedDate(now);
 
 			asset.setStatus(AssetStatus.BOOKED.toString());
@@ -137,7 +139,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 			nextAssetRequest.setStatus("ASSIGNED");
 			nextAssetRequest.setModifiedDate(now);
-			nextAssetRequest.setAssingedDate(now);
+			nextAssetRequest.setAssignedDate(now);
 
 			nextAssetRequest = assetRequestLocalService.updateAssetRequest(nextAssetRequest);
 
@@ -178,7 +180,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 			nextAssetRequest.setStatus("ASSIGNED");
 			nextAssetRequest.setModifiedDate(now);
-			nextAssetRequest.setAssingedDate(now);
+			nextAssetRequest.setAssignedDate(now);
 
 			nextAssetRequest = assetRequestLocalService.updateAssetRequest(nextAssetRequest);
 
@@ -369,7 +371,7 @@ extends AssetRequestLocalServiceBaseImpl {
 		return myList;
 	}
 
-	public void reasignAssets() throws PortalException, SystemException {
+	public void reassignAssets() throws PortalException, SystemException {
 
 		Date now = new Date();
 
@@ -383,19 +385,20 @@ extends AssetRequestLocalServiceBaseImpl {
 
 			try {
 
-				AssetManagementGroupServiceConfiguration groupConfig = getGroupPreferences(groupId, PORTLET_ID);
+				AssetManagementGroupServiceConfiguration groupConfig = getGroupPreferences(groupId);
 
 				int time = groupConfig.time();
 				int minutes = groupConfig.minutes();
 
-				int fullTime = time * minutes;
+				int fullTime = time * minutes; // Max Time to complete booking
+				_log.info("Max fullTime "+time+" * "+minutes+" = "+fullTime);
 
 				if (fullTime != 0) {
 
-					Date assingedDate = requestAsset.getAssingedDate();
+					Date assignedDate = requestAsset.getAssignedDate();
 
 					Calendar today = Calendar.getInstance();
-					today.setTime(assingedDate);
+					today.setTime(assignedDate);
 					today.add(Calendar.MINUTE, fullTime);
 
 					Date date = today.getTime();
@@ -417,7 +420,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 							nextAssetRequest.setStatus("ASSIGNED");
 							nextAssetRequest.setModifiedDate(now);
-							nextAssetRequest.setAssingedDate(now);
+							nextAssetRequest.setAssignedDate(now);
 
 							nextAssetRequest = assetRequestLocalService.updateAssetRequest(nextAssetRequest);
 
@@ -441,14 +444,15 @@ extends AssetRequestLocalServiceBaseImpl {
 					}
 				}
 			} catch (Exception e) {
-				_log.info("Error reasigning asset: \n" + e.getMessage());
+				_log.info("Error reassigning asset:", e);
 			}
 
 		}
 	}
 
-	private AssetManagementGroupServiceConfiguration getGroupPreferences(long groupId, String portletId) throws ConfigurationException {
+	private AssetManagementGroupServiceConfiguration getGroupPreferences(long groupId) throws ConfigurationException {
 		AssetManagementGroupServiceConfiguration groupConfig = _configurationProvider.getGroupConfiguration(
+		//AssetManagementGroupServiceConfiguration groupConfig = ConfigurationProviderUtil.getGroupConfiguration(
                 AssetManagementGroupServiceConfiguration.class, groupId);
 		return groupConfig;
 	}
@@ -499,7 +503,7 @@ extends AssetRequestLocalServiceBaseImpl {
 
 	}
 	
-	@Reference
+	@ServiceReference(type = ConfigurationProvider.class)
     private ConfigurationProvider _configurationProvider;
 	
 	private static final Log _log = LogFactoryUtil.getLog(AssetRequestLocalServiceImpl.class);

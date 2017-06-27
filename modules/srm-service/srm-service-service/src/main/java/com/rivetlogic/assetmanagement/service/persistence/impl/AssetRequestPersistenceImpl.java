@@ -3540,7 +3540,7 @@ public class AssetRequestPersistenceImpl extends BasePersistenceImpl<AssetReques
 		assetRequestImpl.setCompanyId(assetRequest.getCompanyId());
 		assetRequestImpl.setUserName(assetRequest.getUserName());
 		assetRequestImpl.setRequestedDate(assetRequest.getRequestedDate());
-		assetRequestImpl.setAssingedDate(assetRequest.getAssingedDate());
+		assetRequestImpl.setAssignedDate(assetRequest.getAssignedDate());
 		assetRequestImpl.setBookedDate(assetRequest.getBookedDate());
 		assetRequestImpl.setReturnedDate(assetRequest.getReturnedDate());
 		assetRequestImpl.setStatus(assetRequest.getStatus());

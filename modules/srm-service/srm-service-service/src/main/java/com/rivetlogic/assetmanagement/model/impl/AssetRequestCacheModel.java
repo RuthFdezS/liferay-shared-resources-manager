@@ -88,8 +88,8 @@ public class AssetRequestCacheModel implements CacheModel<AssetRequest>,
 		sb.append(userName);
 		sb.append(", requestedDate=");
 		sb.append(requestedDate);
-		sb.append(", assingedDate=");
-		sb.append(assingedDate);
+		sb.append(", assignedDate=");
+		sb.append(assignedDate);
 		sb.append(", bookedDate=");
 		sb.append(bookedDate);
 		sb.append(", returnedDate=");
@@ -151,11 +151,11 @@ public class AssetRequestCacheModel implements CacheModel<AssetRequest>,
 			assetRequestImpl.setRequestedDate(new Date(requestedDate));
 		}
 
-		if (assingedDate == Long.MIN_VALUE) {
-			assetRequestImpl.setAssingedDate(null);
+		if (assignedDate == Long.MIN_VALUE) {
+			assetRequestImpl.setAssignedDate(null);
 		}
 		else {
-			assetRequestImpl.setAssingedDate(new Date(assingedDate));
+			assetRequestImpl.setAssignedDate(new Date(assignedDate));
 		}
 
 		if (bookedDate == Long.MIN_VALUE) {
@@ -215,7 +215,7 @@ public class AssetRequestCacheModel implements CacheModel<AssetRequest>,
 		companyId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		requestedDate = objectInput.readLong();
-		assingedDate = objectInput.readLong();
+		assignedDate = objectInput.readLong();
 		bookedDate = objectInput.readLong();
 		returnedDate = objectInput.readLong();
 		status = objectInput.readUTF();
@@ -253,7 +253,7 @@ public class AssetRequestCacheModel implements CacheModel<AssetRequest>,
 		}
 
 		objectOutput.writeLong(requestedDate);
-		objectOutput.writeLong(assingedDate);
+		objectOutput.writeLong(assignedDate);
 		objectOutput.writeLong(bookedDate);
 		objectOutput.writeLong(returnedDate);
 
@@ -289,7 +289,7 @@ public class AssetRequestCacheModel implements CacheModel<AssetRequest>,
 	public long companyId;
 	public String userName;
 	public long requestedDate;
-	public long assingedDate;
+	public long assignedDate;
 	public long bookedDate;
 	public long returnedDate;
 	public String status;

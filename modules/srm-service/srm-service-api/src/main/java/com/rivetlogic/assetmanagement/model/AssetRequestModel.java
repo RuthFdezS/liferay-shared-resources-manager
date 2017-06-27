@@ -239,18 +239,18 @@ public interface AssetRequestModel extends BaseModel<AssetRequest>, GroupedModel
 	public void setRequestedDate(Date requestedDate);
 
 	/**
-	 * Returns the assinged date of this asset request.
+	 * Returns the assigned date of this asset request.
 	 *
-	 * @return the assinged date of this asset request
+	 * @return the assigned date of this asset request
 	 */
-	public Date getAssingedDate();
+	public Date getAssignedDate();
 
 	/**
-	 * Sets the assinged date of this asset request.
+	 * Sets the assigned date of this asset request.
 	 *
-	 * @param assingedDate the assinged date of this asset request
+	 * @param assignedDate the assigned date of this asset request
 	 */
-	public void setAssingedDate(Date assingedDate);
+	public void setAssignedDate(Date assignedDate);
 
 	/**
 	 * Returns the booked date of this asset request.

@@ -40,7 +40,7 @@ public class AssetRequestSoap implements Serializable {
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setRequestedDate(model.getRequestedDate());
-		soapModel.setAssingedDate(model.getAssingedDate());
+		soapModel.setAssignedDate(model.getAssignedDate());
 		soapModel.setBookedDate(model.getBookedDate());
 		soapModel.setReturnedDate(model.getReturnedDate());
 		soapModel.setStatus(model.getStatus());
@@ -178,12 +178,12 @@ public class AssetRequestSoap implements Serializable {
 		_requestedDate = requestedDate;
 	}
 
-	public Date getAssingedDate() {
-		return _assingedDate;
+	public Date getAssignedDate() {
+		return _assignedDate;
 	}
 
-	public void setAssingedDate(Date assingedDate) {
-		_assingedDate = assingedDate;
+	public void setAssignedDate(Date assignedDate) {
+		_assignedDate = assignedDate;
 	}
 
 	public Date getBookedDate() {
@@ -236,7 +236,7 @@ public class AssetRequestSoap implements Serializable {
 	private long _companyId;
 	private String _userName;
 	private Date _requestedDate;
-	private Date _assingedDate;
+	private Date _assignedDate;
 	private Date _bookedDate;
 	private Date _returnedDate;
 	private String _status;

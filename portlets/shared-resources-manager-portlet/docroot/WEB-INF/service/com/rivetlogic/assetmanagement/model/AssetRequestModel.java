@@ -240,14 +240,14 @@ public interface AssetRequestModel extends BaseModel<AssetRequest>,
 	 *
 	 * @return the assinged date of this asset request
 	 */
-	public Date getAssingedDate();
+	public Date getAssignedDate();
 
 	/**
 	 * Sets the assinged date of this asset request.
 	 *
-	 * @param assingedDate the assinged date of this asset request
+	 * @param assignedDate the assinged date of this asset request
 	 */
-	public void setAssingedDate(Date assingedDate);
+	public void setAssignedDate(Date assignedDate);
 
 	/**
 	 * Returns the booked date of this asset request.

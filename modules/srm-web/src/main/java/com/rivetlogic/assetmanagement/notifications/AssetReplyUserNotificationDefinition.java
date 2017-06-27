@@ -13,10 +13,9 @@ import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
 		property = {"javax.portlet.name=" + AssetKeys.PORTLET_ID},
 		service = UserNotificationDefinition.class
 )
-public class AssetReplyUserNotificationDefinition extends UserNotificationDefinition {
+public class AssetReplyUserNotificationDefinition extends BaseAssetUserNotificationDefinition {
 	public AssetReplyUserNotificationDefinition(){
-		super(AssetKeys.PORTLET_ID, 0,
-				AssetNotificationType.MESSAGE_REPLY.ordinal(),
+		super(AssetNotificationType.MESSAGE_REPLY,
 				"notifications-when-you-get-a-message-reply");
 
 		addUserNotificationDeliveryType( new UserNotificationDeliveryType(

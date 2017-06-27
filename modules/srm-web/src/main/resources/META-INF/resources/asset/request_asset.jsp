@@ -56,7 +56,7 @@
 	<portlet:param name="mvcPath" value="/asset/message_asset.jsp" />
 	<portlet:param name="assetId" value="<%=String.valueOf(assetId)%>" />
 	<portlet:param name="messageType"
-		value="<%=AssetNotificationsKeys.NotificationType.MESSAGE_SEND%>" />
+		value="<%=AssetNotificationType.MESSAGE_SEND.name()%>" />
 	<portlet:param name="toUserId"
 		value="<%=String.valueOf(asset.getCurrentUserId())%>" />
 	<portlet:param name="redirect" value="<%=currentURL%>" />
@@ -170,7 +170,7 @@
 		keyProperty="assetRequestId" modelVar="assetRequest">
 
 		<liferay-ui:search-container-column-date property="requestedDate" />
-		<liferay-ui:search-container-column-date property="assingedDate" />
+		<liferay-ui:search-container-column-date property="assignedDate" />
 		<liferay-ui:search-container-column-date property="bookedDate" />
 		<liferay-ui:search-container-column-date property="returnedDate" />
 		<liferay-ui:search-container-column-text name="user-name"
@@ -226,7 +226,7 @@
 									<portlet:param name="mvcPath"
 										value="/asset/message_asset.jsp" />
 									<portlet:param name="messageType"
-										value="<%=AssetNotificationsKeys.NotificationType.MESSAGE_REPLY%>" />
+										value="<%=AssetNotificationType.MESSAGE_REPLY.name()%>" />
 									<portlet:param name="assetId"
 										value="<%=String.valueOf(assetId)%>" />
 									<portlet:param name="toUserId"

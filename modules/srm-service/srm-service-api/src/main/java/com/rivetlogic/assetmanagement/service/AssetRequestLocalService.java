@@ -333,5 +333,5 @@ public interface AssetRequestLocalService extends BaseLocalService,
 	public void deleteAssetRequestByAssetId(long assetId)
 		throws PortalException, SystemException;
 
-	public void reasignAssets() throws PortalException, SystemException;
+	public void reassignAssets() throws PortalException, SystemException;
 }

@@ -65,7 +65,7 @@ create table rivetlogic_AssetRequest (
 	companyId LONG,
 	userName VARCHAR(75) null,
 	requestedDate DATE null,
-	assingedDate DATE null,
+	assignedDate DATE null,
 	bookedDate DATE null,
 	returnedDate DATE null,
 	status VARCHAR(75) null,

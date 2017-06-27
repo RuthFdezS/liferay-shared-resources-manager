@@ -441,10 +441,10 @@ public class AssetRequestLocalServiceWrapper implements AssetRequestLocalService
 	}
 
 	@Override
-	public void reasignAssets()
+	public void reassignAssets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_assetRequestLocalService.reasignAssets();
+		_assetRequestLocalService.reassignAssets();
 	}
 
 	@Override

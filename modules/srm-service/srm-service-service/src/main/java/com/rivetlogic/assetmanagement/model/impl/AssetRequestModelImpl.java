@@ -78,7 +78,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 			{ "companyId", Types.BIGINT },
 			{ "userName", Types.VARCHAR },
 			{ "requestedDate", Types.TIMESTAMP },
-			{ "assingedDate", Types.TIMESTAMP },
+			{ "assignedDate", Types.TIMESTAMP },
 			{ "bookedDate", Types.TIMESTAMP },
 			{ "returnedDate", Types.TIMESTAMP },
 			{ "status", Types.VARCHAR },
@@ -98,7 +98,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("requestedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("assingedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("assignedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("bookedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("returnedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("status", Types.VARCHAR);
@@ -106,20 +106,20 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table rivetlogic_AssetRequest (uuid_ VARCHAR(75) null,assetRequestId LONG not null primary key,groupId LONG,assetId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,companyId LONG,userName VARCHAR(75) null,requestedDate DATE null,assingedDate DATE null,bookedDate DATE null,returnedDate DATE null,status VARCHAR(75) null,priority VARCHAR(75) null,description VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table rivetlogic_AssetRequest (uuid_ VARCHAR(75) null,assetRequestId LONG not null primary key,groupId LONG,assetId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,companyId LONG,userName VARCHAR(75) null,requestedDate DATE null,assignedDate DATE null,bookedDate DATE null,returnedDate DATE null,status VARCHAR(75) null,priority VARCHAR(75) null,description VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table rivetlogic_AssetRequest";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetRequest.assetRequestId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY rivetlogic_AssetRequest.assetRequestId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.entity.cache.enabled.com.rivetlogic.assetmanagement.model.AssetRequest"),
 			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.rivetlogic.assetmanagement.model.AssetRequest"),
 			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.rivetlogic.assetmanagement.model.AssetRequest"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
@@ -127,7 +127,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 	public static final long USERID_COLUMN_BITMASK = 4L;
 	public static final long UUID_COLUMN_BITMASK = 8L;
 	public static final long ASSETREQUESTID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(srm.service.com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.rivetlogic.assetmanagement.service.util.ServiceProps.get(
 				"lock.expiration.time.com.rivetlogic.assetmanagement.model.AssetRequest"));
 
 	public AssetRequestModelImpl() {
@@ -177,7 +177,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userName", getUserName());
 		attributes.put("requestedDate", getRequestedDate());
-		attributes.put("assingedDate", getAssingedDate());
+		attributes.put("assignedDate", getAssignedDate());
 		attributes.put("bookedDate", getBookedDate());
 		attributes.put("returnedDate", getReturnedDate());
 		attributes.put("status", getStatus());
@@ -252,10 +252,10 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 			setRequestedDate(requestedDate);
 		}
 
-		Date assingedDate = (Date)attributes.get("assingedDate");
+		Date assignedDate = (Date)attributes.get("assignedDate");
 
-		if (assingedDate != null) {
-			setAssingedDate(assingedDate);
+		if (assignedDate != null) {
+			setAssignedDate(assignedDate);
 		}
 
 		Date bookedDate = (Date)attributes.get("bookedDate");
@@ -468,13 +468,13 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 	}
 
 	@Override
-	public Date getAssingedDate() {
-		return _assingedDate;
+	public Date getAssignedDate() {
+		return _assignedDate;
 	}
 
 	@Override
-	public void setAssingedDate(Date assingedDate) {
-		_assingedDate = assingedDate;
+	public void setAssignedDate(Date assignedDate) {
+		_assignedDate = assignedDate;
 	}
 
 	@Override
@@ -589,7 +589,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		assetRequestImpl.setCompanyId(getCompanyId());
 		assetRequestImpl.setUserName(getUserName());
 		assetRequestImpl.setRequestedDate(getRequestedDate());
-		assetRequestImpl.setAssingedDate(getAssingedDate());
+		assetRequestImpl.setAssignedDate(getAssignedDate());
 		assetRequestImpl.setBookedDate(getBookedDate());
 		assetRequestImpl.setReturnedDate(getReturnedDate());
 		assetRequestImpl.setStatus(getStatus());
@@ -739,13 +739,13 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 			assetRequestCacheModel.requestedDate = Long.MIN_VALUE;
 		}
 
-		Date assingedDate = getAssingedDate();
+		Date assignedDate = getAssignedDate();
 
-		if (assingedDate != null) {
-			assetRequestCacheModel.assingedDate = assingedDate.getTime();
+		if (assignedDate != null) {
+			assetRequestCacheModel.assignedDate = assignedDate.getTime();
 		}
 		else {
-			assetRequestCacheModel.assingedDate = Long.MIN_VALUE;
+			assetRequestCacheModel.assignedDate = Long.MIN_VALUE;
 		}
 
 		Date bookedDate = getBookedDate();
@@ -817,8 +817,8 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		sb.append(getUserName());
 		sb.append(", requestedDate=");
 		sb.append(getRequestedDate());
-		sb.append(", assingedDate=");
-		sb.append(getAssingedDate());
+		sb.append(", assignedDate=");
+		sb.append(getAssignedDate());
 		sb.append(", bookedDate=");
 		sb.append(getBookedDate());
 		sb.append(", returnedDate=");
@@ -883,8 +883,8 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 		sb.append(getRequestedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>assingedDate</column-name><column-value><![CDATA[");
-		sb.append(getAssingedDate());
+			"<column><column-name>assignedDate</column-name><column-value><![CDATA[");
+		sb.append(getAssignedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>bookedDate</column-name><column-value><![CDATA[");
@@ -934,7 +934,7 @@ public class AssetRequestModelImpl extends BaseModelImpl<AssetRequest>
 	private boolean _setOriginalCompanyId;
 	private String _userName;
 	private Date _requestedDate;
-	private Date _assingedDate;
+	private Date _assignedDate;
 	private Date _bookedDate;
 	private Date _returnedDate;
 	private String _status;

@@ -70,7 +70,7 @@ public class AssetRequestWrapper implements AssetRequest,
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userName", getUserName());
 		attributes.put("requestedDate", getRequestedDate());
-		attributes.put("assingedDate", getAssingedDate());
+		attributes.put("assignedDate", getAssignedDate());
 		attributes.put("bookedDate", getBookedDate());
 		attributes.put("returnedDate", getReturnedDate());
 		attributes.put("status", getStatus());
@@ -142,10 +142,10 @@ public class AssetRequestWrapper implements AssetRequest,
 			setRequestedDate(requestedDate);
 		}
 
-		Date assingedDate = (Date)attributes.get("assingedDate");
+		Date assignedDate = (Date)attributes.get("assignedDate");
 
-		if (assingedDate != null) {
-			setAssingedDate(assingedDate);
+		if (assignedDate != null) {
+			setAssignedDate(assignedDate);
 		}
 
 		Date bookedDate = (Date)attributes.get("bookedDate");
@@ -305,13 +305,13 @@ public class AssetRequestWrapper implements AssetRequest,
 	}
 
 	/**
-	* Returns the assinged date of this asset request.
+	* Returns the assigned date of this asset request.
 	*
-	* @return the assinged date of this asset request
+	* @return the assigned date of this asset request
 	*/
 	@Override
-	public Date getAssingedDate() {
-		return _assetRequest.getAssingedDate();
+	public Date getAssignedDate() {
+		return _assetRequest.getAssignedDate();
 	}
 
 	/**
@@ -450,13 +450,13 @@ public class AssetRequestWrapper implements AssetRequest,
 	}
 
 	/**
-	* Sets the assinged date of this asset request.
+	* Sets the assigned date of this asset request.
 	*
-	* @param assingedDate the assinged date of this asset request
+	* @param assignedDate the assigned date of this asset request
 	*/
 	@Override
-	public void setAssingedDate(Date assingedDate) {
-		_assetRequest.setAssingedDate(assingedDate);
+	public void setAssignedDate(Date assignedDate) {
+		_assetRequest.setAssignedDate(assignedDate);
 	}
 
 	/**
