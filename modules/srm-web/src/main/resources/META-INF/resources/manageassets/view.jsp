@@ -85,7 +85,6 @@
 		<aui:nav-bar-search cssClass="pull-right">
 			<div class="form-search">
 				<liferay-ui:input-search name="searchText" placeholder="keywords" />
-				hola: <%=searchText %>
 			</div>
 		</aui:nav-bar-search>
 	</aui:nav-bar>
