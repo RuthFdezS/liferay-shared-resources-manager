@@ -65,15 +65,15 @@
 <liferay-ui:header backURL="<%=viewAssetsURL%>" escapeXml="false"
 	localizeTitle="true" showBackURL="true" title="request-asset" />
 
-<aui:row>
-	<aui:col cssClass="resource-image-container" width="30">
+<aui:row cssClass="row-eq-height">
+	<aui:col cssClass="resource-image-container" width="30" sm="4" xs="12">
 		<portlet:resourceURL var="imageResourceURL">
 			<portlet:param name="assetId" value="<%=String.valueOf(assetId)%>" />
 		</portlet:resourceURL>
 		<img class="" src="<%=imageResourceURL.toString()%>"
 				alt="<%=asset.getName()%>" />
 	</aui:col>
-	<aui:col width="70">
+	<aui:col width="70" sm="8" xs="12">
 
 		<!-- Info of asset and request date -->
 		<liferay-ui:message key="location" />:
