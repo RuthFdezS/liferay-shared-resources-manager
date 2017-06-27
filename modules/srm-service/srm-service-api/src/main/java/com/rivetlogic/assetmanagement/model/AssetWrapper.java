@@ -257,19 +257,19 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		return _asset.getPrimaryKeyObj();
 	}
 
-	/**
-	* Returns the current user ID of this asset.
-	*
-	* @return the current user ID of this asset
-	*/
-	@Override
-	public java.lang.Long getCurrentUserId() {
-		return _asset.getCurrentUserId();
-	}
-
 	@Override
 	public java.lang.Object clone() {
 		return new AssetWrapper((Asset)_asset.clone());
+	}
+
+	/**
+	* Returns the current user uuid of this asset.
+	*
+	* @return the current user uuid of this asset
+	*/
+	@Override
+	public java.lang.String getCurrentUserUuid() {
+		return _asset.getCurrentUserUuid();
 	}
 
 	/**
@@ -413,6 +413,16 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	}
 
 	/**
+	* Returns the current user ID of this asset.
+	*
+	* @return the current user ID of this asset
+	*/
+	@Override
+	public long getCurrentUserId() {
+		return _asset.getCurrentUserId();
+	}
+
+	/**
 	* Returns the group ID of this asset.
 	*
 	* @return the group ID of this asset
@@ -518,8 +528,18 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @param currentUserId the current user ID of this asset
 	*/
 	@Override
-	public void setCurrentUserId(java.lang.Long currentUserId) {
+	public void setCurrentUserId(long currentUserId) {
 		_asset.setCurrentUserId(currentUserId);
+	}
+
+	/**
+	* Sets the current user uuid of this asset.
+	*
+	* @param currentUserUuid the current user uuid of this asset
+	*/
+	@Override
+	public void setCurrentUserUuid(java.lang.String currentUserUuid) {
+		_asset.setCurrentUserUuid(currentUserUuid);
 	}
 
 	/**

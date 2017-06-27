@@ -30,7 +30,7 @@ public class ReassigningAssetsScheduler extends BaseSchedulerEntryMessageListene
 		LOG.info("Entering Reassigning Assets Scheduled Job");
 
 		try {
-			AssetRequestLocalServiceUtil.reasignAssets();
+			AssetRequestLocalServiceUtil.reassignAssets();
 		} catch (PortalException e) {
 			LOG.error("Error Reassigning Assets", e);
 		} catch (SystemException e) {

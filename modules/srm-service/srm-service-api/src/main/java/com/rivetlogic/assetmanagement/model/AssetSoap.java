@@ -236,11 +236,11 @@ public class AssetSoap implements Serializable {
 		_photo = photo;
 	}
 
-	public Long getCurrentUserId() {
+	public long getCurrentUserId() {
 		return _currentUserId;
 	}
 
-	public void setCurrentUserId(Long currentUserId) {
+	public void setCurrentUserId(long currentUserId) {
 		_currentUserId = currentUserId;
 	}
 
@@ -260,5 +260,5 @@ public class AssetSoap implements Serializable {
 	private String _status;
 	private String _mimeType;
 	private Blob _photo;
-	private Long _currentUserId;
+	private long _currentUserId;
 }

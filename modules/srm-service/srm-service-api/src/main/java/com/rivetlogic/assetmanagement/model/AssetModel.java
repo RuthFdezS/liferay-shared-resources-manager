@@ -340,14 +340,28 @@ public interface AssetModel extends BaseModel<Asset>, GroupedModel, ShardedModel
 	 *
 	 * @return the current user ID of this asset
 	 */
-	public Long getCurrentUserId();
+	public long getCurrentUserId();
 
 	/**
 	 * Sets the current user ID of this asset.
 	 *
 	 * @param currentUserId the current user ID of this asset
 	 */
-	public void setCurrentUserId(Long currentUserId);
+	public void setCurrentUserId(long currentUserId);
+
+	/**
+	 * Returns the current user uuid of this asset.
+	 *
+	 * @return the current user uuid of this asset
+	 */
+	public String getCurrentUserUuid();
+
+	/**
+	 * Sets the current user uuid of this asset.
+	 *
+	 * @param currentUserUuid the current user uuid of this asset
+	 */
+	public void setCurrentUserUuid(String currentUserUuid);
 
 	@Override
 	public boolean isNew();

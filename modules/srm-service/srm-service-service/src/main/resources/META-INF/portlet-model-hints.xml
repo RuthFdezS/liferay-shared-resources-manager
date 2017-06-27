@@ -18,7 +18,7 @@
 		<field name="status" type="String" />
 		<field name="mimeType" type="String" />
 		<field name="photo" type="Blob" />
-		<field name="currentUserId" type="Long" />
+		<field name="currentUserId" type="long" />
 	</model>
 	<model name="com.rivetlogic.assetmanagement.model.AssetCategory">
 		<field name="uuid" type="String" />

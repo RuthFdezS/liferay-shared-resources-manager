@@ -583,13 +583,29 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	@Override
-	public Long getCurrentUserId() {
+	public long getCurrentUserId() {
 		return _currentUserId;
 	}
 
 	@Override
-	public void setCurrentUserId(Long currentUserId) {
+	public void setCurrentUserId(long currentUserId) {
 		_currentUserId = currentUserId;
+	}
+
+	@Override
+	public String getCurrentUserUuid() {
+		try {
+			User user = UserLocalServiceUtil.getUserById(getCurrentUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
+	}
+
+	@Override
+	public void setCurrentUserUuid(String currentUserUuid) {
 	}
 
 	@Override
@@ -970,7 +986,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	private String _status;
 	private String _mimeType;
 	private AssetPhotoBlobModel _photoBlobModel;
-	private Long _currentUserId;
+	private long _currentUserId;
 	private long _columnBitmask;
 	private Asset _escapedModel;
 }

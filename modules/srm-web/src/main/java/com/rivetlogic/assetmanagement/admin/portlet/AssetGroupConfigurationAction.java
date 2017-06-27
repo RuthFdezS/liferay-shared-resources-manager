@@ -16,7 +16,6 @@ import org.osgi.service.component.annotations.Modified;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.portlet.BaseJSPSettingsConfigurationAction;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
-import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.rivetlogic.assetmanagement.configuration.AssetManagementGroupServiceConfiguration;
 import com.rivetlogic.assetmanagement.keys.AssetKeys;
 

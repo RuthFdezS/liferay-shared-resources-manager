@@ -403,7 +403,7 @@ public class AssetRequestLocalServiceUtil {
 		getService().deleteAssetRequestByAssetId(assetId);
 	}
 
-	public static void reasignAssets()
+	public static void reassignAssets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().reassignAssets();
