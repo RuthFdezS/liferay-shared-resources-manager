@@ -30,3 +30,7 @@
 .button-nav-bar .button-nav-item{
 	display: inline-block;
 }
+
+form select{
+    min-width: 10em;
+}
