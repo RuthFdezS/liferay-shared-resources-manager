@@ -28,15 +28,15 @@
 	<aui:row>
 		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
-				label="Minutes" value="1" checked="<%=1 == minutes_cfg%>" />
+				label="minutes" value="1" checked="<%=1 == minutes_cfg%>" />
 		</aui:col>
 		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
-				label="Hours" value="60" checked="<%=60 == minutes_cfg%>" />
+				label="hours" value="60" checked="<%=60 == minutes_cfg%>" />
 		</aui:col>
 		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
-				label="Days" value="1440" checked="<%=1440 == minutes_cfg%>" />
+				label="days" value="1440" checked="<%=1440 == minutes_cfg%>" />
 		</aui:col>
 	</aui:row>
 	
