@@ -112,11 +112,13 @@ public class AssetNotificationHandler extends BaseUserNotificationHandler {
 
 	private String getPreBookTemplate(JSONObject jsonObject, ServiceContext serviceContext) throws SystemException, PortalException {
 		long returnedUserId = jsonObject.getLong("returnedUserId");
+		long groupId = jsonObject.getLong("groupId");
 
 		String returnedUserName = PortalUtil.getUserName(returnedUserId, StringPool.BLANK);
 
+		LOG.error("Group id "+groupId);
 		AssetManagementGroupServiceConfiguration config = _configurationProvider.getGroupConfiguration(
-                AssetManagementGroupServiceConfiguration.class, serviceContext.getScopeGroupId());
+                AssetManagementGroupServiceConfiguration.class, groupId);
 
 		int time = config.time();
 		int minutes = config.minutes();

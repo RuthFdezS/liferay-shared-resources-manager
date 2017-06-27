@@ -386,7 +386,6 @@ public class AssetRequestLocalServiceImpl extends AssetRequestLocalServiceBaseIm
 				int minutes = groupConfig.minutes();
 
 				int fullTime = time * minutes; // Max Time to complete booking
-				_log.info("Max fullTime "+time+" * "+minutes+" = "+fullTime);
 
 				if (fullTime != 0) {
 
@@ -489,6 +488,7 @@ public class AssetRequestLocalServiceImpl extends AssetRequestLocalServiceBaseIm
 
 		notificationEventJSONObject.put("assetId", asset.getAssetId());
 		notificationEventJSONObject.put("assetName", asset.getName());
+		notificationEventJSONObject.put("groupId", asset.getGroupId());
 
 		notificationEventJSONObject.put("assetRequestId", assetRequest.getAssetRequestId());
 
