@@ -16,7 +16,7 @@
 </liferay-portlet:actionURL>
 
 
-<aui:form action="<%=configurationURL%>" method="post" name="fm">
+<aui:form action="<%=configurationURL%>" method="post" name="fm" cssClass="container-fluid-1280">
 	<aui:input name="<%=Constants.CMD%>" type="hidden"
 		value="<%=Constants.UPDATE%>" />
 	

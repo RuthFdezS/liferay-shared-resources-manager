@@ -18,7 +18,7 @@
 </liferay-portlet:actionURL>
 
 
-<aui:form action="<%=configurationURL%>" method="post" name="fm">
+<aui:form action="<%=configurationURL%>" method="post" name="fm" cssClass="container-fluid-1280">
 	<aui:input name="<%=Constants.CMD%>" type="hidden"
 		value="<%=Constants.UPDATE%>" />
 	
@@ -26,15 +26,15 @@
 	<aui:input name="preferences--time--" required="true" type="number"
 		value="<%=time_cfg%>" />
 	<aui:row>
-		<aui:col>
+		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
 				label="Minutes" value="1" checked="<%=1 == minutes_cfg%>" />
 		</aui:col>
-		<aui:col>
+		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
 				label="Hours" value="60" checked="<%=60 == minutes_cfg%>" />
 		</aui:col>
-		<aui:col>
+		<aui:col span="4" sm="4">
 			<aui:input name="preferences--minutes--" required="true" type="radio"
 				label="Days" value="1440" checked="<%=1440 == minutes_cfg%>" />
 		</aui:col>
