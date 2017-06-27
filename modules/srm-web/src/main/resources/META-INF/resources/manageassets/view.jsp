@@ -49,7 +49,8 @@
 	<portlet:param name="redirect" value="<%=redirect%>" />
 </portlet:renderURL>
 
-<aui:form method="POST" name="<portlet:namespace />fm">
+<c:set var="action" scope="page" value="?p_p_id=${portletDisplay.getId()}"/>
+<aui:form method="POST" name="<portlet:namespace />fm" action="${action}">
 	<aui:row>
 		<aui:col>
 			<aui:select name="category" showEmptyOption="true" inlineField="true"
@@ -74,22 +75,20 @@
 			</aui:select>
 		</aui:col>
 	</aui:row>
-	<aui:row>
-		<aui:nav-bar>
-			<aui:nav>
-				<aui:nav-item iconCssClass="icon-plus" label="add-asset"
-					href="<%=addAssetURL%>">
-				</aui:nav-item>
-				<aui:nav-item href="<%=vieAssetCategoriesURL%>"
-					iconCssClass="icon-categories" label="view-asset-categories" />
-			</aui:nav>
-			<aui:nav-bar-search cssClass="pull-right">
-				<div class="form-search">
-					<liferay-ui:input-search name="searchText" placeholder="keywords" />
-				</div>
-			</aui:nav-bar-search>
-		</aui:nav-bar>
-	</aui:row>
+	<aui:nav-bar cssClass="button-nav-bar">
+		<aui:nav>
+			<aui:nav-item cssClass="button-nav-item" iconCssClass="icon-plus" label="add-asset"
+				href="<%=addAssetURL%>" />
+			<aui:nav-item cssClass="button-nav-item" iconCssClass="icon-categories" label="view-asset-categories"
+				href="<%=vieAssetCategoriesURL%>" />
+		</aui:nav>
+		<aui:nav-bar-search cssClass="pull-right">
+			<div class="form-search">
+				<liferay-ui:input-search name="searchText" placeholder="keywords" />
+				hola: <%=searchText %>
+			</div>
+		</aui:nav-bar-search>
+	</aui:nav-bar>
 </aui:form>
 
 <liferay-ui:search-container var="searchContainer"
