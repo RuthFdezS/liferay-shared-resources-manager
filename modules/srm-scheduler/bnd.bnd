@@ -1,0 +1,4 @@
+Bundle-Name: Shared Resources Management Scheduler
+Bundle-SymbolicName: com.rivetlogic.assetmanagement.schedule
+Bundle-Version: 1.0.0
+Export-Package: com.rivetlogic.assetmanagement.schedule

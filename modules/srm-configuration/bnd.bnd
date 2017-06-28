@@ -1,0 +1,12 @@
+Bundle-Name: Shared Resources Management Configuration
+Bundle-SymbolicName: com.rivetlogic.assetmanagement.configuration
+Bundle-Version: 1.0.0
+Require-Capability: liferay.resource.bundle;filter:="(bundle.symbolic.name=com.rivetlogic.assetmanagement.language)"
+Provide-Capability: liferay.resource.bundle;\
+	resource.bundle.aggregate:String="(bundle.symbolic.name=com.rivetlogic.assetmanagement.language)";\
+	resource.bundle.base.name="content.Language"
+Export-Package:\
+	com.rivetlogic.assetmanagement.configuration
+-liferay-aggregate-resource-bundles: \
+	com.rivetlogic.assetmanagement.language
+-metatype: *

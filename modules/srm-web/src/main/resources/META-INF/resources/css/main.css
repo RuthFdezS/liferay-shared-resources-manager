@@ -1,0 +1,47 @@
+@media (max-width: 979px) and (min-width: 768px) {
+	.aui .row-fluid .resource-image-container {
+		width: 100%;
+	}
+}
+
+@media (max-width: 768px) {
+	.resource-image-container {
+		text-align: center;
+	}
+	
+	.resource-image-container img {
+		width: 60%;
+	}
+}
+
+.table-column-image {
+	width: 10%;
+}
+
+.resource-image-container img {
+		max-width: 50%;
+}
+
+.column-image {
+	max-width: 100%;
+	width: 100%;
+}
+
+.button-nav-bar .button-nav-item{
+	display: inline-block;
+}
+
+form select{
+    min-width: 10em;
+}
+
+#portlet_asset_WAR_sharedresourcesmanagerportlet .resource-image-container img{
+	max-width:100%;
+	width: initial;
+}
+
+@media (min-width: 768px) {
+	.row-eq-height{
+		display: flex;
+	}
+}
