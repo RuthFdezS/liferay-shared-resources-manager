@@ -2,6 +2,7 @@ package com.rivetlogic.assetmanagement.notifications;
 
 import static com.rivetlogic.assetmanagement.keys.AssetKeys.PORTLET_ID;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -19,12 +20,14 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -44,7 +47,7 @@ import com.rivetlogic.assetmanagement.keys.AssetNotificationType;
 	service = UserNotificationHandler.class
 )
 public class AssetNotificationHandler extends BaseUserNotificationHandler {
-	@SuppressWarnings("unused")
+
 	private static final Log LOG = LogFactoryUtil.getLog(AssetNotificationHandler.class);
 	
 	public AssetNotificationHandler() {
@@ -157,19 +160,23 @@ public class AssetNotificationHandler extends BaseUserNotificationHandler {
 	}
 
 	private PortletURL getPortletUrl(ServiceContext serviceContext) throws PortalException, SystemException {
-
-		long portletPlid = PortalUtil.getPlidFromPortletId(serviceContext.getScopeGroupId(), PORTLET_ID);
-
+		List<Group> groups = GroupLocalServiceUtil.getGroups(-1, -1);
+		
 		PortletURL portletURL = null;
-
-		if (portletPlid != 0) {
-			portletURL = PortletURLFactoryUtil
-					.create(serviceContext.getLiferayPortletRequest(), PORTLET_ID, portletPlid, PortletRequest.RENDER_PHASE);
-		} else {
+		
+		for (Group group : groups) {
+			long portletPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), PORTLET_ID);
+			if (portletPlid != 0) {
+				portletURL = PortletURLFactoryUtil.create(serviceContext.getLiferayPortletRequest(), PORTLET_ID, portletPlid, PortletRequest.RENDER_PHASE);
+				break;
+			}
+		}
+		
+		if(portletURL == null) {
 			LiferayPortletResponse liferayPortletResponse = serviceContext.getLiferayPortletResponse();
 			portletURL = liferayPortletResponse.createRenderURL(PORTLET_ID);
 		}
-
+		
 		return portletURL;
 	}
 	
