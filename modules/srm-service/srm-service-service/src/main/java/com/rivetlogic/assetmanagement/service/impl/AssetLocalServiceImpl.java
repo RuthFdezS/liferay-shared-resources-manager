@@ -268,6 +268,40 @@ public class AssetLocalServiceImpl extends AssetLocalServiceBaseImpl {
 		return count;
 	}
 
+	public int getAssetsCountByCategory(long category) {
+		int count = 0;
+		
+		DynamicQuery dynamicQuery = dynamicQuery();
+		
+		if (Validator.isNotNull(category)) {
+			dynamicQuery.add(PropertyFactoryUtil.forName("category").eq(category));
+		}
+
+		try {
+			count = (int) dynamicQueryCount(dynamicQuery);
+		} catch (SystemException e) {
+			_log.error(e.getMessage());
+		}
+		return count;
+	}
+	
+	public int getAssetsCountByLocation(long location) {
+		int count = 0;
+		
+		DynamicQuery dynamicQuery = dynamicQuery();
+		
+		if (Validator.isNotNull(location)) {
+			dynamicQuery.add(PropertyFactoryUtil.forName("location").eq(location));
+		}
+
+		try {
+			count = (int) dynamicQueryCount(dynamicQuery);
+		} catch (SystemException e) {
+			_log.error(e.getMessage());
+		}
+		return count;
+	}
+	
 	public List<Asset> getAssets(long groupId, long companyId, int start, int end, String orderByColumn, String orderByType, String searchText,
 			String category, String location) {
 

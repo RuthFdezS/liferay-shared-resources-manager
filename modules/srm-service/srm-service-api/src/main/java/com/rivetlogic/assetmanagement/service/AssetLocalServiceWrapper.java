@@ -219,6 +219,16 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 	}
 
 	@Override
+	public int getAssetsCountByCategory(long category) {
+		return _assetLocalService.getAssetsCountByCategory(category);
+	}
+
+	@Override
+	public int getAssetsCountByLocation(long location) {
+		return _assetLocalService.getAssetsCountByLocation(location);
+	}
+
+	@Override
 	public int getAvailableAssetsCount(long groupId, long companyId,
 		java.lang.String searchText, java.lang.String category,
 		java.lang.String location)

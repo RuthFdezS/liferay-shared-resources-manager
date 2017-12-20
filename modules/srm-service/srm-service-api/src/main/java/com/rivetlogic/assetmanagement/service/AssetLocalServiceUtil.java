@@ -212,6 +212,14 @@ public class AssetLocalServiceUtil {
 			location);
 	}
 
+	public static int getAssetsCountByCategory(long category) {
+		return getService().getAssetsCountByCategory(category);
+	}
+
+	public static int getAssetsCountByLocation(long location) {
+		return getService().getAssetsCountByLocation(location);
+	}
+
 	public static int getAvailableAssetsCount(long groupId, long companyId,
 		java.lang.String searchText, java.lang.String category,
 		java.lang.String location)

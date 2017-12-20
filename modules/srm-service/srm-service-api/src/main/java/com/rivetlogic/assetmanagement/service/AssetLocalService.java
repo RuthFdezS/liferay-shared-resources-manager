@@ -194,6 +194,12 @@ public interface AssetLocalService extends BaseLocalService,
 		java.lang.String location);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetsCountByCategory(long category);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssetsCountByLocation(long location);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAvailableAssetsCount(long groupId, long companyId,
 		java.lang.String searchText, java.lang.String category,
 		java.lang.String location) throws PortalException, SystemException;
