@@ -246,16 +246,20 @@ public class ManageAssetsPortlet extends MVCPortlet {
 
 	}
 
-	public void deleteAssetCategory(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
-
-		long assetCategoryId = ParamUtil.getLong(request, "assetCategoryId");
-
-		AssetCategoryLocalServiceUtil.deleteAssetCategory(assetCategoryId);
-
+	public void deleteAssetCategory(ActionRequest request, ActionResponse response) throws PortalException {
+		long assetCategoryId = ParamUtil.getLong(request, "idDelete");
+		
+		int count  = AssetLocalServiceUtil.getAssetsCountByCategory(assetCategoryId);
+		
+		if(count > 0) {
+			SessionErrors.add(request, "error-used-category");
+		} else {
+			AssetCategoryLocalServiceUtil.deleteAssetCategory(assetCategoryId);
+		}
 	}
 
 	public void addAssetLocation(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
-
+		
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Asset.class.getName(), request);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
@@ -276,10 +280,15 @@ public class ManageAssetsPortlet extends MVCPortlet {
 	}
 
 	public void deleteAssetLocation(ActionRequest request, ActionResponse response) throws SystemException, PortalException, IOException {
+		long assetLocationId = ParamUtil.getLong(request, "idDelete");
 
-		long assetLocationId = ParamUtil.getLong(request, "assetLocationId");
+		int count  = AssetLocalServiceUtil.getAssetsCountByLocation(assetLocationId);
 
-		AssetLocationLocalServiceUtil.deleteAssetLocation(assetLocationId);
+		if(count > 0) {
+			SessionErrors.add(request, "error-used-location");
+		} else {
+			AssetLocationLocalServiceUtil.deleteAssetLocation(assetLocationId);
+		}
 	}
 
 	@Override
