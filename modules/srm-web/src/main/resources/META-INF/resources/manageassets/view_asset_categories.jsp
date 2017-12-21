@@ -21,69 +21,74 @@
 
 <aui:button value="add-category" icon="icon-plus" onClick="showDialog('category', null, null)" />
 
-<liferay-ui:search-container var="searchContainer"
-	iteratorURL="<%=portletURL%>" emptyResultsMessage="no-asset-categories">
-
-	<liferay-ui:search-container-results
-		results="<%=AssetCategoryLocalServiceUtil.getAssetCategories(themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
-						searchContainer.getStart(), searchContainer.getEnd())%>" />
-
-	<liferay-ui:search-container-row
-		className="com.rivetlogic.assetmanagement.model.AssetCategory"
-		keyProperty="assetCategoryId" modelVar="assetCategory">
-
-		<liferay-ui:search-container-column-text property="name" />
-
-		<liferay-ui:search-container-column-text name="actions">
-			<c:if test="<%=themeDisplay.getScopeGroupId() == assetCategory.getGroupId()%>">
-				<liferay-ui:icon image="edit" message="edit" url="javascript:;"
-				 	onClick="showDialog('category', '${ assetCategory.name }', ${ assetCategory.assetCategoryId })" label="true" />
-				<liferay-ui:icon image="delete" message="delete" url="javascript:;" 
-					onClick="showdDeleteDialog('category', ${ assetCategory.assetCategoryId })" label="true" />
-			</c:if>
-		</liferay-ui:search-container-column-text>
-
-	</liferay-ui:search-container-row>
-
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+<div id="searchContainerOne" >
+	<liferay-ui:search-container var="searchContainer"
+		iteratorURL="<%=portletURL%>" emptyResultsMessage="no-asset-categories">
+	
+		<liferay-ui:search-container-results
+			results="<%=AssetCategoryLocalServiceUtil.getAssetCategories(themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
+							searchContainer.getStart(), searchContainer.getEnd())%>" />
+	
+		<liferay-ui:search-container-row
+			className="com.rivetlogic.assetmanagement.model.AssetCategory"
+			keyProperty="assetCategoryId" modelVar="assetCategory">
+	
+			<liferay-ui:search-container-column-text property="name" />
+	
+			<liferay-ui:search-container-column-text name="actions">
+				<c:if test="<%=themeDisplay.getScopeGroupId() == assetCategory.getGroupId()%>">
+					<liferay-ui:icon image="edit" message="edit" url="javascript:;"
+					 	onClick="showDialog('category', '${ assetCategory.name }', ${ assetCategory.assetCategoryId })" label="true" />
+					<liferay-ui:icon image="delete" message="delete" url="javascript:;" 
+						onClick="showdDeleteDialog('category', ${ assetCategory.assetCategoryId })" label="true" />
+				</c:if>
+			</liferay-ui:search-container-column-text>
+	
+		</liferay-ui:search-container-row>
+	
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</div>
 <hr/>
 
 <aui:button value="add-location" icon="icon-plus" onClick="showDialog('location', null, null)"/>
-
-<liferay-ui:search-container var="searchContainer"
-	iteratorURL="<%=portletURL%>" emptyResultsMessage="no-asset-locations">
-
-	<liferay-ui:search-container-results
-		results="<%=AssetLocationLocalServiceUtil.getAssetLocations(themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
-						searchContainer.getStart(), searchContainer.getEnd())%>" />
-
-	<liferay-ui:search-container-row
-		className="com.rivetlogic.assetmanagement.model.AssetLocation"
-		keyProperty="assetLocationId" modelVar="assetLocation">
-
-		<liferay-ui:search-container-column-text property="name" />
-		
-		<liferay-ui:search-container-column-text name="actions">
-			<c:if test="<%=themeDisplay.getScopeGroupId() == assetLocation.getGroupId()%>">
-				<liferay-ui:icon image="edit" message="edit" url="javascript:;"
-				 	onClick="showDialog('location', '${ assetLocation.name }', ${ assetLocation.assetLocationId })" label="true" />
-				<liferay-ui:icon image="delete" message="delete" url="javascript:;" 
-					onClick="showdDeleteDialog('location', ${ assetLocation.assetLocationId })" label="true" />
-			</c:if>
-		</liferay-ui:search-container-column-text>
-
-	</liferay-ui:search-container-row>
-
-	<liferay-ui:search-iterator />
-</liferay-ui:search-container>
+<div id="searchContainerTwo" >
+	<liferay-ui:search-container var="searchContainer"
+		iteratorURL="<%=portletURL%>" emptyResultsMessage="no-asset-locations">
+	
+		<liferay-ui:search-container-results
+			results="<%=AssetLocationLocalServiceUtil.getAssetLocations(themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
+							searchContainer.getStart(), searchContainer.getEnd())%>" />
+	
+		<liferay-ui:search-container-row
+			className="com.rivetlogic.assetmanagement.model.AssetLocation"
+			keyProperty="assetLocationId" modelVar="assetLocation" >
+	
+			<liferay-ui:search-container-column-text property="name" cssClass="column-width-50"/>
+			
+			<liferay-ui:search-container-column-text name="actions" cssClass="column-width-50">
+				<c:if test="<%=themeDisplay.getScopeGroupId() == assetLocation.getGroupId()%>">
+					<liferay-ui:icon image="edit" message="edit" url="javascript:;"
+					 	onClick="showDialog('location', '${ assetLocation.name }', ${ assetLocation.assetLocationId })" label="true" />
+					<liferay-ui:icon image="delete" message="delete" url="javascript:;" 
+						onClick="showdDeleteDialog('location', ${ assetLocation.assetLocationId })" label="true" />
+				</c:if>
+			</liferay-ui:search-container-column-text>
+	
+		</liferay-ui:search-container-row>
+	
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
+</div>
 
 <div class="hide">
 	<aui:container id="edit-dialog">
 		<aui:form name="dialog-form">
 			<aui:input name="redirect" type="hidden" value="<%=currentURL%>" />
 			<aui:input name="id" type="hidden" value="null"/>
-			<aui:input name="name" required="true" />
+			<aui:input name="name" required="true" >
+				<aui:validator name="maxLength">75</aui:validator>
+			</aui:input>
 			<aui:button-row cssClass="pull-right">
 				<aui:button value="save" type="submit" cssClass="btn-primary" />
 			</aui:button-row>
