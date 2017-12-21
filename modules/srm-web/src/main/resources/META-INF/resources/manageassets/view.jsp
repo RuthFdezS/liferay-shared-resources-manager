@@ -79,7 +79,7 @@
 		<aui:nav>
 			<aui:nav-item cssClass="button-nav-item" iconCssClass="icon-plus" label="add-asset"
 				href="<%=addAssetURL%>" />
-			<aui:nav-item cssClass="button-nav-item" iconCssClass="icon-categories" label="view-asset-categories"
+			<aui:nav-item cssClass="button-nav-item" iconCssClass="icon-plus" label="view-asset-categories"
 				href="<%=vieAssetCategoriesURL%>" />
 		</aui:nav>
 		<aui:nav-bar-search cssClass="pull-right">
