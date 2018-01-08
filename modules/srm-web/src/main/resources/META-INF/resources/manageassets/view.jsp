@@ -118,7 +118,7 @@
 			</portlet:resourceURL>
 
 			<img class="column-image" src="<%=imageResourceURL.toString()%>"
-				alt="<%=asset.getName()%>" />
+				onerror="this.onerror=null;this.src='<%= request.getContextPath()%>/images/no-preview-available.jpg';" alt="<%=asset.getName()%>" />
 
 		</liferay-ui:search-container-column-text>
 
