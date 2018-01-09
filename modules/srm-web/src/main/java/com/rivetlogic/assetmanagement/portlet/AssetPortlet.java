@@ -1,7 +1,6 @@
 package com.rivetlogic.assetmanagement.portlet;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Blob;
 
@@ -11,8 +10,8 @@ import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
 import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -166,13 +165,7 @@ public class AssetPortlet extends MVCPortlet {
 						o.flush();
 						o.close();
 					} else {
-						// return default image
-						InputStream is = getPortletContext().getResourceAsStream("/images/no-preview-available.jpg");
-						OutputStream o = resourceResponse.getPortletOutputStream();
-						IOUtils.copy(is, o);
-
-						o.flush();
-						o.close();
+						resourceResponse.setProperty(ResourceResponse.HTTP_STATUS_CODE, Integer.toString(HttpServletResponse.SC_NOT_FOUND));
 					}
 				}
 
