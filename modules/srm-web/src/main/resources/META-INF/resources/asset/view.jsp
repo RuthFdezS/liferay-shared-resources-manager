@@ -1,12 +1,24 @@
 <%@include file="/init.jsp"%>
 
 <%
-	AssetManagementPortletInstanceConfiguration portletInstanceConfiguration = portletDisplay
-			.getPortletInstanceConfiguration(AssetManagementPortletInstanceConfiguration.class);
+
+	String searchText = ParamUtil.getString(renderRequest, "searchText");
+	String category = ParamUtil.getString(renderRequest, "category");
+	String location = ParamUtil.getString(renderRequest, "location");
+	String source = ParamUtil.getString(renderRequest, "source");
 
 	String tabs1 = ParamUtil.getString(request, "tabs1", StringPool.BLANK);
-	if (tabs1.isEmpty()) {
-		tabs1 = portletInstanceConfiguration.defaultOpenedTab().getTabName();
+	
+	if (!source.isEmpty()) {
+		if (tabs1.isEmpty()) {
+			tabs1 = "all-assets";
+		}
+	} else {
+		AssetManagementPortletInstanceConfiguration portletInstanceConfiguration = portletDisplay
+				.getPortletInstanceConfiguration(AssetManagementPortletInstanceConfiguration.class);
+		if (tabs1.isEmpty()) {
+			tabs1 = portletInstanceConfiguration.defaultOpenedTab().getTabName();
+		}
 	}
 
 	PortletURL portletURL = renderResponse.createRenderURL();
@@ -23,12 +35,6 @@
 	if (Validator.isNull(orderByType)) {
 		orderByType = "desc";
 	}
-
-	String searchText = ParamUtil.getString(renderRequest, "searchText");
-
-	String category = ParamUtil.getString(renderRequest, "category");
-
-	String location = ParamUtil.getString(renderRequest, "location");
 
 	List<AssetCategory> categories = AssetCategoryLocalServiceUtil.getAssetCategories(
 			themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
@@ -87,9 +93,8 @@
 							</aui:nav-bar-search>
 						</aui:nav-bar>
 					</aui:row>
+					<input type="hidden" id="<portlet:namespace />source" name="<portlet:namespace />source" value="search" />
 				</aui:form>
-	
-				
 	
 				<liferay-ui:search-container var="searchContainer"
 					iteratorURL="<%=portletURL%>" emptyResultsMessage="no-assets"
