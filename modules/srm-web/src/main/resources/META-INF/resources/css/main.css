@@ -53,3 +53,7 @@ form select{
 		display: flex;
 	}
 }
+
+. main-container {
+    min-height: 415px;
+}
