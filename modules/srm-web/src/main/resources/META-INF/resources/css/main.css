@@ -54,6 +54,8 @@ form select{
 	}
 }
 
-. main-container {
-    min-height: 415px;
+.main-container {
+    min-width: 340px;
+    overflow: scroll;
+    background-color: white;
 }
