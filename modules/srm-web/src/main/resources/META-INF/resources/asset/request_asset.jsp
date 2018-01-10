@@ -71,7 +71,7 @@
 			<portlet:param name="assetId" value="<%=String.valueOf(assetId)%>" />
 		</portlet:resourceURL>
 		<img class="" src="<%=imageResourceURL.toString()%>"
-				alt="<%=asset.getName()%>" />
+				onerror="this.onerror=null;this.src='<%= request.getContextPath()%>/images/no-preview-available.jpg';" alt="<%=asset.getName()%>" />
 	</aui:col>
 	<aui:col width="70" sm="8" xs="12">
 
