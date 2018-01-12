@@ -63,6 +63,7 @@ import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 		"com.liferay.portlet.private-session-attributes=false",
 		"com.liferay.portlet.control-panel-entry-category=site_administration.content",
 		"com.liferay.portlet.control-panel-entry-weight=1.0",
+		"com.liferay.portlet.restore-current-view=false",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/manageassets/view.jsp",
 		"javax.portlet.init-param.config-template=/manageassets/configuration.jsp",
@@ -78,6 +79,8 @@ import com.rivetlogic.assetmanagement.service.AssetRequestLocalServiceUtil;
 	service = Portlet.class
 )
 public class ManageAssetsPortlet extends MVCPortlet {
+	
+	
 	public void addAsset(ActionRequest request, ActionResponse response) throws IOException, PortalException, SystemException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(Asset.class.getName(), request);
@@ -102,7 +105,7 @@ public class ManageAssetsPortlet extends MVCPortlet {
 
 			response.setRenderParameter("assetId", String.valueOf(assetId));
 			response.setRenderParameter("mvcPath", "/manageassets/edit_asset.jsp");
-
+			sendRedirect(request, response);
 		} else {
 			for (String error : errors) {
 				SessionErrors.add(request, error);
@@ -122,6 +125,7 @@ public class ManageAssetsPortlet extends MVCPortlet {
 		AssetRequestLocalServiceUtil.deleteAssetRequestByAssetId(assetId);
 		AssetLocalServiceUtil.deleteAsset(assetId);
 
+		response.setRenderParameter("mvcPath", "/manageassets/view.jsp");
 		sendRedirect(request, response);
 	}
 
@@ -167,6 +171,9 @@ public class ManageAssetsPortlet extends MVCPortlet {
 
 				AssetLocalServiceUtil.editAsset(themeDisplay, serviceContext, asset);
 
+				response.setRenderParameter("assetId", assetId+"");
+				response.setRenderParameter("fullUpdate", "true");
+				response.setRenderParameter("mvcPath", "/manageassets/edit_asset.jsp");
 				sendRedirect(request, response);
 
 			} else {
@@ -211,6 +218,9 @@ public class ManageAssetsPortlet extends MVCPortlet {
 
 			AssetLocalServiceUtil.editAsset(themeDisplay, serviceContext, asset);
 
+			response.setRenderParameter("fullUpdate", "true");
+			response.setRenderParameter("assetId", assetId+"");
+			response.setRenderParameter("mvcPath", "/manageassets/edit_asset.jsp");
 			sendRedirect(request, response);
 
 		} else {

@@ -2,12 +2,12 @@
 
 
 <%
-	String redirect = ParamUtil.getString(request, "redirect");
-
 	String currentURL = PortalUtil.getCurrentURL(renderRequest);
 
 	long assetId = ParamUtil.getLong(request, "assetId");
 	
+	String fullUpdate = ParamUtil.getString(request, "fullUpdate");
+
 	Asset asset = AssetLocalServiceUtil.getAsset(assetId);
 	
 	List<AssetCategory> categories = AssetCategoryLocalServiceUtil.getAssetCategories(themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
@@ -19,15 +19,20 @@
 
 
 <portlet:renderURL var="viewManageAssetsURL" />
-
+ 
 <portlet:actionURL var="editAssetURL" name="editAsset" />
 <portlet:actionURL var="editAssetPhotoURL" name="editAssetPhoto" />
+
 
 <portlet:actionURL var="deleteAssetURL" name="deleteAsset">
 	<portlet:param name="assetId"
 		value="<%=String.valueOf(asset.getAssetId())%>" />
-	<portlet:param name="redirect" value="<%=redirect%>" />
 </portlet:actionURL>
+
+<portlet:renderURL var="myself">
+    <portlet:param name="mvcPath" value="/manageassets/edit_asset.jsp" />
+    <portlet:param name="assetId" value="<%= String.valueOf(assetId) %>" />
+</portlet:renderURL>
 
 
 <liferay-ui:header backURL="<%=viewManageAssetsURL%>"
@@ -77,8 +82,7 @@ message="asset-success-created"/>
 			<aui:fieldset>
 			
 				<aui:input name="assetId" type="hidden" value="<%=String.valueOf(asset.getAssetId())%>"></aui:input>
-				<aui:input name="redirect" type="hidden" value="<%=currentURL%>" ></aui:input>
-			
+
 				<aui:input name="photo" type="file" label="change-photo" />
 
 			</aui:fieldset>
@@ -98,8 +102,6 @@ message="asset-success-created"/>
 			<aui:fieldset>
 
 				<aui:input name="assetId" type="hidden" />
-
-				<aui:input name="redirect" type="hidden" value="<%=redirect%>" />
 
 				<aui:select name="location" showEmptyOption="true">
 					<%
@@ -150,6 +152,13 @@ message="asset-success-created"/>
 	</aui:col>
 
 </aui:row>
+
+<script type="text/javascript">
+	var refresh = <%= fullUpdate %>
+	if(refresh) {
+		location.href="${myself}";
+	}
+</script>
 
 <script type="text/javascript">
 	function confirmDel() {

@@ -40,7 +40,6 @@
 
 <portlet:renderURL var="addAssetURL">
 	<portlet:param name="mvcPath" value="/manageassets/add_asset.jsp" />
-	<portlet:param name="redirect" value="<%=redirect%>" />
 </portlet:renderURL>
 
 <portlet:renderURL var="vieAssetCategoriesURL">
@@ -107,7 +106,6 @@
 				value="/manageassets/edit_asset.jsp" />
 			<portlet:param name="assetId"
 				value="<%=String.valueOf(asset.getAssetId())%>" />
-			<portlet:param name="redirect" value="<%=redirect%>" />
 		</portlet:renderURL>
 		
 		<liferay-ui:search-container-column-text cssClass="table-column-image" name="image" href="<%=editAssetURL%>"  >
