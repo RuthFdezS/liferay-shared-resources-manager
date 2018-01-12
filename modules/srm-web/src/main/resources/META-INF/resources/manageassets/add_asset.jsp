@@ -1,8 +1,6 @@
 <%@include file="/init.jsp"%>
 
 <%
-	String redirect = ParamUtil.getString(request, "redirect");
-
 	Asset asset = AssetLocalServiceUtil.createAsset(0);
 
 	List<AssetCategory> categories = AssetCategoryLocalServiceUtil.getAssetCategories(themeDisplay.getScopeGroupId(),
@@ -36,8 +34,6 @@
 	name="<portlet:namespace />fm">
 
 	<aui:fieldset>
-
-		<aui:input name="redirect" type="hidden" value="<%=redirect%>" />
 
 		<aui:select name="location" showEmptyOption="true">
 			<%
